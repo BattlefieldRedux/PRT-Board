@@ -15,15 +15,122 @@
  */
  
  
- /* **********************************************
+/* **********************************************
  *               World Map
  * ********************************************** */
 #world-map{
   width: 770px;
   height: 500px;
 }
-
 #world-map svg{
   background-image: url('../img/hex.png');
   background-size: 7px;
+}
+
+
+
+/* **********************************************
+ *               Operations Overlay
+ * ********************************************** */
+ 
+ map#op-details.ocean {
+    left: 250px;
+}
+ 
+.show-op-overlay map#op-details {
+    display: initial;
+} 
+ 
+map#op-details {
+    position: absolute;
+    z-index: 1;
+    display: none;
+    top: 221px;
+    pointer-events: none;
+}
+
+.op {
+    position: relative;
+}
+
+/*FIXME: PLACEHOLDER!!! */
+.op img{
+content: url("../img/J_grey.png")
+}
+
+.op-description {
+    background-color: rgba(68,127,237, 0.7);
+    position: absolute;
+    bottom: 25px;
+    white-space: nowrap;
+    
+}
+
+.op-description.left {
+    right: 85px;
+}
+
+.op-description.right {
+    left: 83px;
+}
+
+.op-description p {
+    -webkit-margin-before: 0;      
+    -webkit-margin-after: 0;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+}
+
+.op:nth-child(2) {
+    left: 42px;
+    top: -23px;
+}
+
+@keyframes draw {
+    to {stroke-dashoffset: 0px;}
+}
+
+
+line{
+  animation-fill-mode: forwards;
+  animation-iteration-count: 1;
+  animation-name: draw;
+  animation-duration: 4s;
+
+}
+
+
+/* **********************************************
+ *               Operations Names (List)
+ * ********************************************** */
+div#op-list-wrapper {
+    position: absolute;
+    z-index: 1;
+}
+
+ul#op-list {
+    list-style: none;
+}
+
+li.op-name {
+    font-weight: bold;
+    font-size: 25px;
+    color: white;
+    text-shadow: 0px 0px 5px black;
+    cursor: pointer;
+}
+
+li.op-name:hover {
+  color: #447FED;
+
+}
+
+
+
+/* **********************************************
+ *               Makers
+ * ********************************************** */
+
+.jvectormap-marker.prt-selected{
+  fill: red;
 }
