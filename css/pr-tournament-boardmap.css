@@ -53,10 +53,6 @@ map#op-details {
     position: relative;
 }
 
-/*FIXME: PLACEHOLDER!!! */
-.op img{
-content: url("../img/J_grey.png")
-}
 
 .op-description {
     background-color: rgba(68,127,237, 0.7);
