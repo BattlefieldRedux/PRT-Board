@@ -21,35 +21,46 @@
 var MAP_1 = {
   key: "Muttrah",
   name: "Kashan",
-  description: [ "BEIRUT AAS STD" , "RU - MEC" ],
+  description: [ "INS Infantry" , '<img src="img/flag.jpg" class="logo">PAC (650 TICKETS)', '<img src="img/flag.jpg" class="logo">EMF (650 TICKETS)' ],
   latLng: [ -40.72, -45.14] 
 }
 
 var MAP_2 = {
   key: "Beirut",
   name: "Kashan",
-  description: [ "BB", "BEIRUT AAS STD" , '<span class="pac">PAC</span> AS IDF (650 TICKETS)', "EMF AS RUS (650 TICKETS)" ],
+  description: [ "CNC Alternative" , '<img src="img/flag.jpg" class="logo">PAC (650 TICKETS)', '<img src="img/flag.jpg" class="logo">EMF (650 TICKETS)' ],
   latLng: [ 40.47, 21.85] 
 }
 
 var MAP_3 = {
   key: "Kashan",
   name: "Kashan",
-  description: [ "CC", "BEIRUT AAS STD" , "PAC AS IDF (650 TICKETS)", "EMF AS RUS (650 TICKETS)" ],
+  description: [ "AAS Standard" , '<img src="img/flag.jpg" class="logo">PAC (650 TICKETS)', '<img src="img/flag.jpg" class="logo">EMF (650 TICKETS)' ],
   latLng: [ 20.47, 41.85] 
 }
 
 var MAP_4 = {
   key: "Fallujah",
   name: "Kashan",
-  description: [ "DD", "BEIRUT AAS STD" , "PAC AS IDF (650 TICKETS)", "EMF AS RUS (650 TICKETS)" ],
+  description: [ "AAS Large" , '<img src="img/flag.jpg" class="logo">PAC (650 TICKETS)', '<img src="img/flag.jpg" class="logo">EMF (650 TICKETS)' ],
   latLng: [ 60.47, 91.85] 
 }
 
 // Operation: (string) name, (array:MAP) map
 var OPERATIONS = [
-  [ "Operation 1", [ MAP_1, MAP_2 ] ],
-  [ "Operation 2", [ MAP_3, MAP_4 ] ]
+  [ "Operation 1",  [ MAP_1, MAP_2 ] , "rgb(12, 125, 56)" ],
+  [ "Operation 2",  [ MAP_3, MAP_4 ] , "#124286" ],
+  [ "Operation 3",  [ MAP_1, MAP_2 ] , "#124286" ],
+  [ "Operation 4",  [ MAP_3, MAP_4 ] , "#124286" ],
+  [ "Operation 5",  [ MAP_1, MAP_2 ] , "#124286" ],
+  [ "Operation 6",  [ MAP_3, MAP_4 ] , "#124286" ],
+  [ "Operation 7",  [ MAP_1, MAP_2 ] , "#124286" ],
+  [ "Operation 8",  [ MAP_3, MAP_4 ] , "#124286" ],
+  [ "Operation 9",  [ MAP_1, MAP_2 ] , "#124286" ],
+  [ "Operation 10", [ MAP_3, MAP_4 ] , "#124286" ],
+  [ "Operation 11", [ MAP_1, MAP_2 ] , "#124286" ]
+  
+  
 ]
 
 
@@ -78,7 +89,7 @@ function init(){
     for(map_index in OPERATIONS[index][1]){
       var args = [];
       args.push(index)
-      MAP.addMarker(OPERATIONS[index][1][map_index].key, {latLng: OPERATIONS[index][1][map_index].latLng, Operation: index} );
+      MAP.addMarker(OPERATIONS[index][1][map_index].key, {latLng: OPERATIONS[index][1][map_index].latLng, Operation: index, style : { initial: {    fill: 'red'   } }} );
     }
   }
  
@@ -174,6 +185,10 @@ function FIX_removeClass(object, rClass){
 
 
 
+
+
+
+
 function onOperationTitleMouseEnter(){
   var pos = $(this).prevAll().length;
  
@@ -194,9 +209,9 @@ function onOperationTitleMouseEnter(){
   
   //FIXME: Remove magic number!!!!
   if(average > 300){
-   showOpOverlay(OPERATIONS[pos], { overlayClass: 'ocean', descriptionClass: 'right' });
+   showOpOverlay(markers, OPERATIONS[pos], { overlayClass: 'ocean', descriptionClass: 'right' });
   }else{
-    showOpOverlay(OPERATIONS[pos], { overlayClass: 'ocean', descriptionClass: 'left' });
+    showOpOverlay(markers, OPERATIONS[pos], { overlayClass: 'ocean', descriptionClass: 'left' });
   }
   
 }
@@ -233,16 +248,9 @@ function onMarkerEnter(){
   
   //FIXME: Remove magic number!!!!
   if(average > 300){
-    showOpOverlay(OPERATIONS[operation], { overlayClass: 'ocean', descriptionClass: 'right' });
+    showOpOverlay(markers, OPERATIONS[operation], { overlayClass: 'ocean', descriptionClass: 'right' });
   }else{
-    showOpOverlay(OPERATIONS[operation], { overlayClass: 'ocean', descriptionClass: 'left' });
-  }
-  
-  //Draw Line towars Op-Overlay
-  for(index in markers){
-    var pos = index;
-    var img = $('#op-details .op:nth-child(' +(++pos)+ ') img');
-    drawLine($('#world-map svg g:nth-child(3) '),  {left: parseFloat(markers[index].attr('x')), top: parseFloat(markers[index].attr('y')) },  calculateCenter('world-map', img));
+    showOpOverlay(markers, OPERATIONS[operation], { overlayClass: 'ocean', descriptionClass: 'left' });
   }
 }
 
@@ -252,13 +260,17 @@ function onMarkerLeave(){
   FIX_removeClass($('.jvectormap-marker.prt-selected'), 'prt-selected');
   
   hideOpOverlay();
-  $('#world-map svg g:nth-child(3) ').html('');
+
 }
 
 
-
+/**
+ * Handles everything regarding hiding the Operation details
+ *
+ */
 function hideOpOverlay(){
   $('#world-map').removeClass('show-op-overlay');
+  $('#world-map svg g:nth-child(3) ').html('');
 }
 
 
@@ -267,12 +279,12 @@ function hideOpOverlay(){
 
 /**
  * Handles everything regarding showing the Operation details
+ * @param {Array|Jquery} Array of the markers Jquery objects
  * @param {Object|Operation} The object regarding an Operation
  * @param {Object| { overlayClass: string, descriptionClass: string}} An object with extra classes to add to the overlay
  *
  */
-
-function showOpOverlay( Operation, styles){
+function showOpOverlay(markers, Operation, styles){
   $('#world-map').addClass('show-op-overlay');
   $('#op-details').addClass(styles.overlayClass);
   
@@ -288,6 +300,13 @@ function showOpOverlay( Operation, styles){
       $(this).append("<p>"+Operation[1][index].description[d]+"</p>");
     }
   });
+  
+  //Draw Line towards Op-Overlay
+  for(index in markers){
+    var pos = index;
+    var img = $('#op-details .op:nth-child(' +(++pos)+ ') img');
+    drawLine($('#world-map svg g:nth-child(3) '),  {left: parseFloat(markers[index].attr('x')), top: parseFloat(markers[index].attr('y')) },  calculateCenter('world-map', img));
+  }
 }
 
 /**
@@ -299,7 +318,7 @@ function showOpOverlay( Operation, styles){
 function drawLine(container, origin, destiny){
  
   var dist = calculateDistance(origin.left, origin.top, destiny.left, destiny.top);
-  var nHtml = ' <line x1="' +origin.left+ '" y1="' +origin.top+ '" x2="' +destiny.left+ '" y2="' +destiny.top+ '" style="stroke:rgb(255,0,0);stroke-width:2; stroke-dasharray: ' +dist+ 'px; stroke-dashoffset: ' +dist+ 'px " />';
+  var nHtml = ' <line x1="' +origin.left+ '" y1="' +origin.top+ '" x2="' +destiny.left+ '" y2="' +destiny.top+ '" style="stroke-dasharray: ' +dist+ 'px; stroke-dashoffset: ' +dist+ 'px " />';
   nHtml += container.html();
   container.html(nHtml);
 }
