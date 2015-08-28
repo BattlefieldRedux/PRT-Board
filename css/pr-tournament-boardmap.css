@@ -28,117 +28,352 @@
  }
  
 /* **********************************************
+ *                 REMOVE THIS!!!!!!!!
+ * ********************************************** */
+html {
+    background-color: #373737;
+}
+
+div#Board {
+    border: 1px solid #969696;
+}
+ 
+ 
+/* **********************************************
+ *                 Operations Board
+ * ********************************************** */
+
+div#Board{
+  width: 788px;
+}
+ /* **********************************************
+ *                 Operations Header
+ * ********************************************** */
+div#Op-Header {
+  width: 100%;
+  height: 126px;
+  border-bottom: 1px solid black;
+  background-color: #202020;
+  position: relative;
+  overflow: hidden;
+}
+
+div#Op-Header-inner {
+  white-space: nowrap;
+  position: relative;
+  width: 200%;
+  top: 20px;
+  margin: 0px 7px;
+}
+
+ /* **********************************************
+ *                 Operations Name
+ * ********************************************** */
+div#Op-Name {
+    color: white;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    top: 133px;
+    font-size: 39px;
+}
+
+/* **********************************************
+ *                 Operations Stripes
+ * ********************************************** */
+ 
+.op-stripe {
+  position: relative;
+  height: 300px;
+  width: 100%;
+  background-color: #686868;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  margin-bottom: 1px;
+}
+
+.op-stripe.hide {
+  display: none;
+}
+ 
+ /* **********************************************
+ *                 Operation buttons
+ * ********************************************** */
+div#Op-fake-base {
+    background-color: #202020;
+    width: 100%;
+    height: 10px;
+    position: absolute;
+    top: 64px;
+    z-index: 3;
+}
+
+.op-button-container {
+  position: relative;
+  width: 86px; 
+  height: 49.65px;
+  background-color: #202020;
+  margin: 24.83px 0;
+  float:left;
+}
+
+.op-button-container:after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  width: 60.81px;
+  height: 60.81px;
+  -webkit-transform: scaleY(0.5774) rotate(-45deg);
+  -ms-transform: scaleY(0.5774) rotate(-45deg);
+  transform: scaleY(0.5774) rotate(-45deg);
+  background-color: inherit;
+  left: 12.5944px;
+ 
+}
+
+
+.op-button-container:after {
+  bottom: -30.4056px;
+   
+  box-shadow: 0 0 20px black;
+}
+
+/*cover up extra shadows*/
+.op-button-container span {
+  display: block;
+  position: absolute;
+  top:0px;
+  left: 0;
+  width:86px;
+  height:49.6521px;
+  z-index: 2;
+  background: inherit;
+}
+
+
+.op-button-inner {
+	width: 82%;
+	height: 40px;
+	background: #7E7E7E;
+	float: left;
+	position: relative;
+	left: 9%;
+	top: 6%;
+	z-index: 3;
+  transition: top 200ms ease-in;
+}
+.op-button-inner.selected, .op-button-inner:hover {
+	top: 40%;
+
+}
+
+.op-button-inner:before {
+	content: "";
+	position: absolute;
+	top: -20px;
+	left: 0;
+	width: 0;
+	height: 0;
+	border-left: 35px solid transparent;
+	border-right: 35px solid transparent;
+	border-bottom: 20px solid #7E7E7E;
+}
+.op-button-inner:after {
+	content: "";
+	position: absolute;
+	bottom: -20px;
+	left: 0;
+	width: 0;
+	height: 0;
+	border-left: 35px solid transparent;
+	border-right: 35px solid transparent;
+	border-top: 20px solid #7E7E7E;
+}
+
+ 
+ 
+/* **********************************************
+ *              Operation Details Container
+ * ********************************************** */
+ 
+.op-details {
+  width: 324px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  transition: all 300ms;
+  background-position: center;
+  /*background-attachment: fixed;*/
+}
+
+.left.op-details {
+  left: 0;
+}
+
+.right.op-details {
+  right: 0;
+}
+
+.op-details:hover:after {
+    content: "";
+    border-bottom: 25px solid transparent;   
+    border-left: 15px solid rgba(0,0,0, 0.7);   
+    border-top: 25px solid transparent;
+    position: absolute;
+    right: -15px;
+    top: 126px;
+}
+
+
+.op-details.extended {
+  width: 90%;
+  left: 5%; 
+  background-image: url('../img/maps/charlies_point/background.png');
+
+
+}
+
+.op-details.extended:hover:after {
+    border-right: 15px solid white;   
+    border-left: 0px solid transparent;   
+    right: 0px;
+}
+/* **********************************************
+ *              Operation Details
+ * ********************************************** */
+ .op-team-name {
+ 	position: relative;
+ 	transition: top 300ms;
+    font-size: 35px;
+    top: 0;
+}
+.extended .op-team-name {
+    top: -110px
+}
+.op-teams-versus {
+    font-size: 30px;
+    margin: 11px 0px;
+}
+
+
+.op-team-faction {
+	transition: top 300ms;
+    font-size: 22px;
+    position: relative;
+    top: -6px;
+}
+
+
+.extended .op-team-faction {
+    top: -40px;
+}
+
+.op-map-name {
+    position: absolute;
+    top: 55px;
+    text-align: center;
+    width: 100%;
+    font-size: 35px;
+}
+
+.op-map-layer {
+    position: absolute;
+    top: 99px;
+    font-size: 28px;
+    width: 100%;
+    text-align: center;
+}
+
+.op-teams-container {
+    position: absolute;
+    top: 186px;
+}
+
+.op-teams-container {
+    width: 100%;
+    text-align: center;
+}
+
+.op-team {
+    width: 40%;
+    float: left;
+    position: relative;
+}
+
+.op-teams-versus {
+    width: 20%;
+    float: left;
+}
+ 
+ 
+/* **********************************************
  *               World Map
  * ********************************************** */
-#world-map{
-  width: 770px;
-  height: 500px;
+.world-map{
+  width: 100%;
+  height: 100%;
 }
-#world-map svg{
+.world-map svg{
   background-image: url('../img/hex.png');
   background-size: 7px;
 }
 
 
-
 /* **********************************************
- *               Operations Overlay
+ *               Operation Thumbnail: Container
  * ********************************************** */
- 
- map#op-details.ocean {
-    left: 250px;
-}
- 
-.show-op-overlay map#op-details {
-    display: initial;
-} 
- 
-map#op-details {
-    position: absolute;
-    z-index: 1;
-    display: none;
-    top: 221px;
-    pointer-events: none;
-}
-
-.op {
-    position: relative;
-}
-
-
-.op-description {
-    background-color: rgba(68,127,237, 0.7);
-    position: absolute;
-    bottom: 25px;
-    white-space: nowrap;
-    
-}
-
-.op-description.left {
-    right: 85px;
-}
-
-.op-description.right {
-    left: 83px;
-}
-
-.op-description p {
-    -webkit-margin-before: 0;      
-    -webkit-margin-after: 0;
-    -webkit-margin-start: 0px;
-    -webkit-margin-end: 0px;
-}
-
-.op:nth-child(2) {
-    left: 42px;
-    top: -23px;
-}
-
-@keyframes draw {
-    to {stroke-dashoffset: 0px;}
-}
-
-
-line{
-  animation-fill-mode: forwards;
-  animation-iteration-count: 1;
-  animation-name: draw;
-  animation-duration: 4s;
-
+.op-map-thumnail-wrapper{
+	position: absolute;
+	height: 100%;
+	width: 324px;
+	right: 0;
+	top: 0;
 }
 
 
 /* **********************************************
- *               Operations Names (List)
+ *               Operation Thumbnail: Base
  * ********************************************** */
-div#op-list-wrapper {
-    position: absolute;
-    z-index: 1;
+.op-map-thumnail-base {
+	width: 204px;
+	height: 120px;
+	background: white;
+	margin: 0 auto;
+	position: relative;
+	top: 90px;
+  
 }
 
-ul#op-list {
-    list-style: none;
+.op-map-thumnail-base:before {
+	content: "";
+	position: absolute;
+	top: -57px;
+	left: 0;
+	width: 0;
+	height: 0;
+	border-left: 102px solid transparent;
+	border-right: 102px solid transparent;
+	border-bottom: 57px solid white;
 }
-
-li.op-name {
-    font-weight: bold;
-    font-size: 25px;
-    color: white;
-    text-shadow: 0px 0px 5px black;
-    cursor: pointer;
+.op-map-thumnail-base:after {
+	content: "";
+	position: absolute;
+	bottom: -57px;
+	left: 0;
+	width: 0;
+	height: 0;
+	border-left: 102px solid transparent;
+	border-right: 102px solid transparent;
+	border-top: 57px solid white;
 }
-
-li.op-name:hover {
-  color: #447FED;
-
-}
-
-
 
 /* **********************************************
- *               Makers
+ *               Operation Thumbnail: Image
  * ********************************************** */
-
-.jvectormap-marker.prt-selected{
-  fill: red;
+img.op-map-thumnail-image {
+  position: absolute;
+  top: 55px;
+  left: 80px;
 }
