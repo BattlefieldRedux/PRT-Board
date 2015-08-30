@@ -15,62 +15,37 @@
  */
  
 
+ 
  /* **********************************************
  *               CONFIGURATION VALUES 
  * ********************************************** */
-var MAP_1 = {
-  key: "Muttrah",
-  name: "Muttrah",
-  layer: "AAS STD",
-  team : [ { name: "EMF", faction: "RU" }, { name: "PAC", faction: "MEC" } ],
-  viewport: { lat: 10.47, lng: 21.85, zoom: 4 }
-}
-
-var MAP_2 = {
-  key: "Beirut",
-  name: "Beirut",
-  layer: "AAS STD",
-  team : [ { name: "EMF", faction: "RU" }, { name: "PAC", faction: "MEC" } ],
-  viewport: { lat: 20.47, lng: 21.85, zoom: 4 }
-}
-
-var MAP_3 = {
-  key: "Kashan",
-  name: "Kashan",
-  layer: "AAS STD",
-  team : [ { name: "EMF", faction: "RU" }, { name: "PAC", faction: "MEC" } ],
-  viewport: { lat: 30.47, lng: 21.85, zoom: 4 }
-}
-
-var MAP_4 = {
-  key: "Fallujah",
-  name: "Fallujah",
-  layer: "AAS STD",
-  team : [ { name: "EMF", faction: "RU" }, { name: "PAC", faction: "MEC" } ],
-  viewport: { lat: 40.47, lng: 21.85, zoom: 4 }
-}
-
+ 
+var TEAMS = [ {name: "Lorem", initials:"PMS", css:"pms" }, {name: "Ipsium", initials:"SMP", css:"smp" } ];
+ 
 // Operation: (string) name, (array:MAP) map
 var OPERATIONS = [
-  { name: "Operation 1", maps: [ MAP_1, MAP_2 ] },
-  { name: "Operation 2", maps: [ MAP_3, MAP_4 ] },
-  { name: "Operation 3", maps: [ MAP_3, MAP_4, MAP_4 ] },
-  { name: "Operation 4", maps: [ MAP_3, MAP_4, MAP_4 ] },
-  { name: "Operation 5", maps: [ MAP_3, MAP_4, MAP_4 ] },
-  { name: "Operation 6", maps: [ MAP_3, MAP_4, MAP_4 ] },
-  { name: "Operation 7", maps: [ MAP_3, MAP_4, MAP_4 ] },
-  { name: "Operation 8", maps: [ MAP_3, MAP_4, MAP_4 ] },
-  { name: "Operation 9", maps: [ MAP_3, MAP_4, MAP_4 ] },
-  { name: "Operation 10", maps: [ MAP_3, MAP_4, MAP_4 ] }
-       
+  { name: "Operation 1", maps: [ VADSO_AAS, BEIRUT_AAS    ], aftermatch: [ { tickets: [ 0, 10 ] } ] },
+  { name: "Operation 2", maps: [ KOZELSK_AAS, Sbeneh_AAS  ] },
+  { name: "Operation 3", maps: [ MUTTRAH_AAS, HADES_AAS   ] },
+  { name: "Operation 4", maps: [ SHIJIA_AAS, KASHAN_AAS   ] },
+  { name: "Operation 5", maps: [ YAMALIA_AAS, XIANG_AAS   ] },
+  { name: "Operation 6", maps: [ SAAREMA_AAS, DRANG_AAS   ] },
+  { name: "Operation 7", maps: [ DOVRE_AAS, BLACKGOLD_AAS ] },
+  { name: "Operation 8", maps: [ NUJIMAA_AAS, KHAMY_AAS   ] },
+  { name: "Operation 9", maps: [ WANDA_AAS, DRAGON_AAS    ] }
 ]
-
 
 /* **********************************************
  *        DO NOT EDIT BEYHOND THIS POINT
  * ********************************************** */
  
+ //Public Enums
+var TOGGLE = { toggle: 0, close: 1, open: 2 };
+
+//Static Vars
 var MAPS = [];
+
+//onLoad
 $(window).ready(init);
  
 /**
@@ -91,30 +66,30 @@ function init(){
   });
   
   //Build header
-  buildOpHeader(OPERATIONS, $('#Op-Header-inner'))
+  buildOpHeader();
+  $('.header-team-name.team-a').text(TEAMS[0].initials);
+  $('.header-team-name.team-b').text(TEAMS[1].initials);
+  setPoints(0, 0);
   
   //Show 1st Operation
   displayOperation(OPERATIONS[0]);
-  $('.op-button-inner').first().addClass('selected');
-  
-  
-  
-  
-  
+  $('.op-button').first().addClass('selected');
+   
   //Add click listeners to header's buttons
-  $('#Op-Header').on('click', '.op-button-inner', onOperationSelected);
+  $('#Op-Header').on('click', '.op-button', onOperationSelected);
   
   $('#Op-Strip-Container').on('click', '.op-details', onClickDetails);
   
-  
-  
+  $('.op-selector.right').click(function(){zappingOperation(1);});
+  $('.op-selector.left').click(function(){zappingOperation(-1);});
+  //$('#Op-Name').click(function(){alert('hello');});
 }
 
 
 /**
-  * 
-  * @param {int} stripes - 
-  * @param {Object|Jquery} container - 
+  * Handles the construction and initialization of every stripe
+  * @param {int} stripes - Number of stripes to build
+  * @param {Object|Jquery} container - Container that will hold the stripes
   */
 function buildOpStripes(stripes, container){
   
@@ -144,15 +119,23 @@ function buildOpStripes(stripes, container){
     
     stripe += '<div class="op-team team-a">';
     stripe += '<div class="op-team-name"></div>';
-    stripe += '<div class="op-team-faction"></div>';
-    stripe += '</div>'
+    stripe += '<div class="op-team-faction-container">';
+    stripe += '<div class="op-team-faction" ></div>'
+    stripe += '<img class="op-team-faction-img" />'
+    stripe += '</div>';//Closes .op-team-faction-container
+    stripe += '<div class="op-team-tickets"></div>';
+    stripe += '</div>';//Closes .op-team.team-a
     
-    stripe += '<div class="op-teams-versus">Vs</div>'
+    stripe += '<div class="op-teams-versus">Vs</div>';
     
     stripe += '<div class="op-team team-b">';
     stripe += '<div class="op-team-name"></div>';
+    stripe += '<div class="op-team-faction-container">';
     stripe += '<div class="op-team-faction"></div>';
-    stripe += '</div>';
+    stripe += '<img class="op-team-faction-img" />'
+    stripe += '</div>';//Closes .op-team-faction-container
+    stripe += '<div class="op-team-tickets"></div>';
+    stripe += '</div>';//Closes .op-team.team-b
     
     stripe += '</div>';//Closes '.op-teams-container'
     stripe += '</div>';//Closes '.op-details'
@@ -162,21 +145,24 @@ function buildOpStripes(stripes, container){
   }
 }
 
-function buildOpHeader(operations, container){
+/**
+  * Handles the construction and initialization of the header (Operation buttons and selectors)
+  */
+function buildOpHeader(){
+  var container = $('#Op-Header-Icons');
   
   for(index in OPERATIONS){
-    var header = '';  
-    header += '<div class="op-button-container"><span></span>';
-    header += '<div class="op-button-inner" data-operation="' + index + '"></div>';
-    header += '<div class="op-header-shadow"></div>';
-    header += '</div>';
-    container.append(header);
+    var button = '';
+    button += '<div class="op-button" data-operation="' + index + '">'
+    button += '</div>';
+    container.append(button);
   }
 }
 
 /**
- * Initializes a map
- */
+  * Handles the initialization of a map
+  * @param {Object|Jquery} mapContainer - Container that will hold the map
+  */
 function initMap(mapContainer){
   
    return new jvm.Map({
@@ -207,11 +193,18 @@ function initMap(mapContainer){
   });
 }
 
-
+/**
+  * Updates Header and Stripes with the information of the given operation
+  * @param {Object|Operation} operation - Operation
+  */
 function displayOperation(operation){
-  var stripes = $('.op-stripe');
-  $('#Op-Name').html(operation.name);
+  //Hide extended operation details if any
+  $('.op-details.extended').each(function(){  toggleDetails($(this), TOGGLE.close); })
   
+  
+  var stripes = $('.op-stripe');
+  $('#Op-Name').text(operation.name);
+  //$('#Op-Name').attr('data-operations')
   
   stripes.each(function(index){
     
@@ -220,25 +213,59 @@ function displayOperation(operation){
       return;
     }else{
       $(this).removeClass('hide');
-      populateStripe($(this), operation.maps[index]);
+      populateStripe( $(this), operation, index);
       createMarkerAndFocus( MAPS[index], operation.maps[index] );
     }
   });
 }
 
-
-function populateStripe(stripe, map){
+/**
+  * Given a stripe it updates its information with the given Operation object
+  * @param {Object|Jquery} stripe - Stripe that is the container to all the information
+  * @param {Object|Operation} operation - Operation object
+  * @param {int} index - Index of the map and stripe
+  */
+function populateStripe(stripe, operation, index){
+  var map = operation.maps[index];
+  var tickets = map.tickets;
+  
+  if( typeof operation.aftermatch != 'undefined' && typeof operation.aftermatch[index] != 'undefined' ){
+     var winner = tickets[0] > tickets[1] ? 0 : 1;
+     var message = map.team[winner].name + ' Victory';
+     tickets = operation.aftermatch[index].tickets;
+  }
+   
+  
+  
   stripe.find('.op-map-name').html(map.name);
   stripe.find('.op-map-layer').html(map.layer);
   
   stripe.find('.team-a .op-team-name').html(map.team[0].name);
-  stripe.find('.team-a .op-team-faction').html(map.team[0].faction);
+  stripe.find('.team-a .op-team-faction').text(map.team[0].faction);
+  stripe.find('.team-a .op-team-tickets').text(tickets[0] + ' Tickets');
+  
+  if(typeof message != 'undefined' ){
+    stripe.find('.op-teams-versus').attr('data-alt', message);
+  }else{
+     stripe.find('.op-teams-versus').removeAttr('data-alt');
+  }
+
   
   stripe.find('.team-b .op-team-name').html(map.team[1].name);
-  stripe.find('.team-b .op-team-faction').html(map.team[1].faction);
-   stripe.find('img.op-map-thumnail-image').attr('src', 'img/thumbnail.png');
+  stripe.find('.team-b .op-team-faction').text(map.team[1].faction);  
+  stripe.find('.team-b .op-team-tickets').text(tickets[1] + ' Tickets');
+  
+  stripe.find('img.op-map-thumnail-image').attr('src', 'img/thumbnail.png');
+
+  
 }
 
+
+/**
+  * Creates a marker and focus on it
+  * @param {Object|JVM} map - Map to create marker and focus
+  * @param {Object|Map} data - Map information with the latitude, longitude and zoom
+  */
 function createMarkerAndFocus(map, data){
   map.removeAllMarkers();
   
@@ -252,29 +279,99 @@ function createMarkerAndFocus(map, data){
   });
 }
 
+/**
+  * Switch Operations in relation to the current one
+  * @param {int} step - Position of new operation in relation to current one
+  */
+function zappingOperation(step){  
+  var currentoperationSelected = $('.op-button.selected');
+  var opIndex = parseInt(currentoperationSelected.attr('data-operation'));
+  
+  var nOperations = $('.op-button').length;
+  var nextOper = mod(opIndex + step, nOperations) ;
+  currentoperationSelected.removeClass('selected');
+  
+  
+  $('.op-button:nth-child('+(nextOper+1)+')').addClass('selected');
+  displayOperation(OPERATIONS[nextOper]);
 
+}
+
+
+/**
+  * Event handler -  User selects an operation
+  */
 function onOperationSelected(){
-  $('.op-button-inner.selected').removeClass('selected');
+  $('.op-button.selected').removeClass('selected');
   $(this).addClass('selected');
   var operation = parseInt($(this).attr('data-operation'));
   displayOperation(OPERATIONS[operation]);
 }
 
+/**
+  * Event handler -  User clicks on details of a stripe (Operation's map)
+  */
 function onClickDetails(){
-
-  if($(this).hasClass('extended')){
-    $(this).removeClass('extended');
-  }else{
-    $('.op-details.extended').removeClass('extended');
-    $(this).addClass('extended');
-  }
-
+  var alreadyOpen = $(this).hasClass('extended');
+  $('.op-details.extended').each(function(){ toggleDetails( $(this), TOGGLE.close ); });
+  
+  if(!alreadyOpen)
+    toggleDetails($(this), TOGGLE.open);
 }
 
 
+/**
+  * Opens, Closes or Toggles a given Stripe
+  * @param {Object|Jquery} container - Map detail's object to close/open
+  * @param {int} toggle - New state: open/close/toggle
+  */
+function toggleDetails(container, toggle){
+  
+  if( (toggle == TOGGLE.open) && container.hasClass('extended'))
+    return;
+  
+   
+  
+  if( (toggle == TOGGLE.close) && !container.hasClass('extended'))
+    return;
 
+  if( (toggle == TOGGLE.close) || ((toggle == TOGGLE.toggle) && container.hasClass('extended') ) ){
+    container.removeClass('extended');
+  }else{
+    container.addClass('extended');
+  }
+  
+  var versus =  container.find('.op-teams-versus');
+  var alt = versus.attr('data-alt');
+  
+  if (alt != 'undefined'){
+    versus.attr('data-alt', versus.text());
+    versus.text(alt);
+  }
+  
+ 
+  
+ 
+}
 
+/**
+  * Sets the points in the Header
+  * @param {int} teamA - Points of team A
+  * @param {int} teamB - Points of team B
+  */
+function setPoints(teamA, teamB){
+  $('.header-team-points.team-a').addClass(TEAMS[0].css).text(teamA);
+  $('.header-team-points.team-b').addClass(TEAMS[1].css).text(teamB);
+}
 
+/**
+  * Calculates the modulus (Native mod,%, is broken)
+  * @param {int} n
+  * @param {int} m
+  */
+function mod(n, m) {
+  return ((n % m) + m) % m;
+}
 
 
 /**

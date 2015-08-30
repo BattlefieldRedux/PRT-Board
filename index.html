@@ -28,6 +28,7 @@
     <script src="js/jquery-jvectormap-2.0.4.min.js"></script>
     <script src="js/jquery-jvectormap-world-mill.js"></script>
     
+     <script src="js/pr-tournament-boardmap-maps.js"></script>
     <script src="js/pr-tournament-boardmap.js"></script>
      <!--   END Scripts   -->
   </head>
@@ -35,10 +36,24 @@
     <!-- BOARD -->
     <div id="Board">
       <div id="Op-Header">
-        <div id="Op-Header-inner">
-          <div id="Op-fake-base"></div>
+        <div id="Op-Header-Inner">
+          <div class="header-team-name team-a"></div>
+          <div class="header-team-points team-a"></div>
+          
+          <div id="Op-Header-Icons-Wrapper">
+            <div class="op-header-icons-banner"></div>
+            <div id="Op-Header-Icons"></div>
+            <div class="op-header-icons-banner"></div>
+          </div>
+          
+          <div class="header-team-points team-b"></div>
+          <div class="header-team-name team-b"></div>
         </div>
-        <div id="Op-Name"></div>
+        <div id="Op-Name-Wrapper">
+          <div id="Op-Name"></div>
+          <div class="op-selector right"></div>
+          <div class="op-selector left"></div>
+        </div>
       </div>
       <div id="Op-Strip-Container">
       </div>
