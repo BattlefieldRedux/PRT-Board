@@ -20,11 +20,14 @@
  *               CONFIGURATION VALUES 
  * ********************************************** */
  
-var TEAMS = [ {name: "Lorem", initials:"PMS", css:"pms" }, {name: "Ipsium", initials:"SMP", css:"smp" } ];
+var TEAMS = [ 
+  {name: "Lorem" , initials:"PMS", color:"" }, 
+  {name: "Ipsium", initials:"SMP", color:"" } 
+];
  
 // Operation: (string) name, (array:MAP) map
 var OPERATIONS = [
-  { name: "Operation 1", maps: [ VADSO_AAS, BEIRUT_AAS    ], aftermatch: [ { tickets: [ 0, 10 ] } ] },
+  { name: "Operation 1", maps: [ VADSO_AAS, BEIRUT_AAS    ] },
   { name: "Operation 2", maps: [ KOZELSK_AAS, Sbeneh_AAS  ] },
   { name: "Operation 3", maps: [ MUTTRAH_AAS, HADES_AAS   ] },
   { name: "Operation 4", maps: [ SHIJIA_AAS, KASHAN_AAS   ] },
@@ -34,6 +37,7 @@ var OPERATIONS = [
   { name: "Operation 8", maps: [ NUJIMAA_AAS, KHAMY_AAS   ] },
   { name: "Operation 9", maps: [ WANDA_AAS, DRAGON_AAS    ] }
 ]
+
 
 /* **********************************************
  *        DO NOT EDIT BEYHOND THIS POINT
@@ -213,7 +217,7 @@ function displayOperation(operation){
       return;
     }else{
       $(this).removeClass('hide');
-      populateStripe( $(this), operation, index);
+      populateStripe( $(this), operation.maps[index]);
       createMarkerAndFocus( MAPS[index], operation.maps[index] );
     }
   });
@@ -222,21 +226,12 @@ function displayOperation(operation){
 /**
   * Given a stripe it updates its information with the given Operation object
   * @param {Object|Jquery} stripe - Stripe that is the container to all the information
-  * @param {Object|Operation} operation - Operation object
-  * @param {int} index - Index of the map and stripe
+  * @param {Object|Map} operation - Map information object
   */
-function populateStripe(stripe, operation, index){
-  var map = operation.maps[index];
+function populateStripe(stripe, map){
   var tickets = map.tickets;
   
-  if( typeof operation.aftermatch != 'undefined' && typeof operation.aftermatch[index] != 'undefined' ){
-     var winner = tickets[0] > tickets[1] ? 0 : 1;
-     var message = map.team[winner].name + ' Victory';
-     tickets = operation.aftermatch[index].tickets;
-  }
-   
-  
-  
+
   stripe.find('.op-map-name').html(map.name);
   stripe.find('.op-map-layer').html(map.layer);
   
@@ -244,7 +239,9 @@ function populateStripe(stripe, operation, index){
   stripe.find('.team-a .op-team-faction').text(map.team[0].faction);
   stripe.find('.team-a .op-team-tickets').text(tickets[0] + ' Tickets');
   
-  if(typeof message != 'undefined' ){
+  if( map.played ){
+    var winner = tickets[0] > tickets[1] ? 0 : 1;
+    var message = map.team[winner].name + ' Victory';
     stripe.find('.op-teams-versus').attr('data-alt', message);
   }else{
      stripe.find('.op-teams-versus').removeAttr('data-alt');
@@ -256,8 +253,6 @@ function populateStripe(stripe, operation, index){
   stripe.find('.team-b .op-team-tickets').text(tickets[1] + ' Tickets');
   
   stripe.find('img.op-map-thumnail-image').attr('src', 'img/thumbnail.png');
-
-  
 }
 
 

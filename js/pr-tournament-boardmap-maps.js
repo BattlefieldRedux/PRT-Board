@@ -25,7 +25,8 @@ var teamB = "EAA";
   layer: "AAS STD",
   team : [ { name: teamA, faction: "RU" }, { name: teamB, faction: "GB" } ],
   viewport: { lat: 70.04, lng: 29.43, zoom: 4 },
-  tickets: [ 110, 110]
+  tickets: [ 0, 110],
+  played: true
 }
  
 var BEIRUT_AAS = {
@@ -34,7 +35,8 @@ var BEIRUT_AAS = {
   layer: "AAS STD",
   team : [ { name: teamA, faction: "IDF" }, { name: teamB, faction: "RU" } ],
   viewport: { lat: 33.53, lng: 35.30, zoom: 4 },
-  tickets: [ 110, 110]
+  tickets: [ 110, 110],
+  played: false
 }
  
  
@@ -44,7 +46,8 @@ var KOZELSK_AAS = {
   layer: "AAS STD",
   team : [ { name: teamA, faction: "RU" }, { name: teamB, faction: "MIL" } ],
   viewport: { lat: 54.02, lng: 35.48, zoom: 4 },
-  tickets: [ 110, 110]
+  tickets: [ 110, 110],
+  played: false
 }
 
 
@@ -54,7 +57,8 @@ var Sbeneh_AAS = {
   layer: "AAS STD",
   team : [ { name: teamA, faction: "FSA" }, { name: teamB, faction: "MEC" } ],
   viewport: { lat: 33.26, lng: 36.17, zoom: 4 },
-  tickets: [ 110, 110]
+  tickets: [ 110, 110],
+  played: false
 }
 
 
@@ -64,7 +68,8 @@ var MUTTRAH_AAS = {
   layer: "AAS STD",
   team : [ { name: teamA, faction: "USMC" }, { name: teamB, faction: "MEC" } ],
   viewport: { lat: 23.37, lng: 58.34, zoom: 4 },
-  tickets: [ 110, 110]
+  tickets: [ 110, 110],
+  played: false
 }
 
 var HADES_AAS = {
@@ -73,7 +78,8 @@ var HADES_AAS = {
   layer: "AAS STD",
   team : [ { name: teamA, faction: "RU" }, { name: teamB, faction: "NL" } ],
   viewport: { lat: 44.14, lng: 39.36, zoom: 4 },
-  tickets: [ 110, 110]
+  tickets: [ 110, 110],
+  played: false
 }
 
 var SHIJIA_AAS = {
@@ -82,7 +88,8 @@ var SHIJIA_AAS = {
   layer: "AAS STD",
   team : [ { name: teamA, faction: "PLA" }, { name: teamB, faction: "GB" } ],
   viewport: { lat: 1, lng: 1, zoom: 4 },
-  tickets: [ 110, 110]
+  tickets: [ 110, 110],
+  played: false
 }
 
 
@@ -92,7 +99,8 @@ var KASHAN_AAS = {
   layer: "AAS STD",
   team : [ { name: teamA, faction: "US/CA" }, { name: teamB, faction: "MEC" } ],
   viewport: { lat: 33.59, lng: 51.28, zoom: 4 },
-  tickets: [ 110, 110]
+  tickets: [ 110, 110],
+  played: false
 }
 
 var YAMALIA_AAS = {
@@ -101,7 +109,8 @@ var YAMALIA_AAS = {
   layer: "AAS STD",
   team : [ { name: teamA, faction: "CA" }, { name: teamB, faction: "RU" } ],
   viewport: { lat: 66.59, lng: 74.51, zoom: 4 },
-  tickets: [ 110, 110]
+  tickets: [ 110, 110],
+  played: false
 }
 
 
@@ -111,7 +120,8 @@ var XIANG_AAS = {
   layer: "AAS STD",
   team : [ { name: teamA, faction: "PLA" }, { name: teamB, faction: "FR" } ],
   viewport: { lat: 29.26, lng: 121.43, zoom: 4 },
-  tickets: [ 110, 110]
+  tickets: [ 110, 110],
+  played: false
 }
 
 
@@ -121,7 +131,8 @@ var SAAREMA_AAS = {
   layer: "AAS STD",
   team : [ { name: teamA, faction: "USMC" }, { name: teamB, faction: "RU" } ],
   viewport: { lat: 58.25, lng: 22.30, zoom: 4 },
-  tickets: [ 110, 110]
+  tickets: [ 110, 110],
+  played: false
 }
 
 var DRANG_AAS = {
@@ -130,7 +141,8 @@ var DRANG_AAS = {
   layer: "AAS STD",
   team : [ { name: teamA, faction: "US" }, { name: teamB, faction: "NVA" } ],
   viewport: { lat: 13.33, lng: 107.42, zoom: 4 },
-  tickets: [ 110, 110]
+  tickets: [ 110, 110],
+  played: false
 }
 
 
@@ -140,7 +152,8 @@ var DOVRE_AAS = {
   layer: "AAS STD",
   team : [ { name: teamA, faction: "RU" }, { name: teamB, faction: "GER/NL" } ],
   viewport: { lat: 62.2, lng: 9.28, zoom: 4 },
-  tickets: [ 110, 110]
+  tickets: [ 110, 110],
+  played: false
 }
 
 
@@ -150,7 +163,8 @@ var BLACKGOLD_AAS = {
   layer: "AAS STD",
   team : [ { name: teamA, faction: "PLA" }, { name: teamB, faction: "RU" } ],
   viewport: { lat: 43.29, lng: 87.43, zoom: 4 },
-  tickets: [ 110, 110]
+  tickets: [ 110, 110],
+  played: false
 }
 
 
@@ -160,7 +174,8 @@ var NUJIMAA_AAS = {
   layer: "AAS STD",
   team : [ { name: teamA, faction: "RU" }, { name: teamB, faction: "FR" } ],
   viewport: { lat: 60.57, lng: 28.32, zoom: 4 },
-  tickets: [ 110, 110]
+  tickets: [ 110, 110],
+  played: false
 }
 
 
@@ -171,7 +186,8 @@ var KHAMY_AAS = {
   layer: "AAS STD",
   team : [ { name: teamA, faction: "US" }, { name: teamB, faction: "MEC" } ],
   viewport: { lat: 31.14, lng: 46.19, zoom: 4 },
-  tickets: [ 110, 110]
+  tickets: [ 110, 110],
+  played: false
 }
 
 var WANDA_AAS = {
@@ -180,7 +196,8 @@ var WANDA_AAS = {
   layer: "AAS STD",
   team : [ { name: teamA, faction: "PLA" }, { name: teamB, faction: "GER" } ],
   viewport: { lat: 48, lng: 129, zoom: 4 },
-  tickets: [ 110, 110]
+  tickets: [ 110, 110],
+  played: false
 }
 
 var DRAGON_AAS = {
@@ -189,6 +206,7 @@ var DRAGON_AAS = {
   layer: "AAS STD",
   team : [ { name: teamA, faction: "MIL" }, { name: teamB, faction: "GB" } ],
   viewport: { lat: 43.15, lng: 45.24, zoom: 4 },
-  tickets: [ 110, 110]
+  tickets: [ 110, 110],
+  played: false
 }
 	
