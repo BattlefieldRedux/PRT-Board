@@ -13,7 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+   
+
 
  
  /* **********************************************
@@ -21,21 +22,21 @@
  * ********************************************** */
  
 var TEAMS = [ 
-  {name: "Lorem" , initials:"PMS", color:"" }, 
-  {name: "Ipsium", initials:"SMP", color:"" } 
+  {name: "Lorem" , initials:"EAA", logo: 'thumbnail.png', color:"#ff0000", points: '12'}, 
+  {name: "Ipsium", initials:"PSC", logo: 'thumbnail.png', color:"rgb(0, 255, 0)", points: '10' } 
 ];
  
 // Operation: (string) name, (array:MAP) map
 var OPERATIONS = [
-  { name: "Operation 1", maps: [ VADSO_AAS, BEIRUT_AAS    ] },
-  { name: "Operation 2", maps: [ KOZELSK_AAS, Sbeneh_AAS  ] },
-  { name: "Operation 3", maps: [ MUTTRAH_AAS, HADES_AAS   ] },
-  { name: "Operation 4", maps: [ SHIJIA_AAS, KASHAN_AAS   ] },
-  { name: "Operation 5", maps: [ YAMALIA_AAS, XIANG_AAS   ] },
-  { name: "Operation 6", maps: [ SAAREMA_AAS, DRANG_AAS   ] },
-  { name: "Operation 7", maps: [ DOVRE_AAS, BLACKGOLD_AAS ] },
-  { name: "Operation 8", maps: [ NUJIMAA_AAS, KHAMY_AAS   ] },
-  { name: "Operation 9", maps: [ WANDA_AAS, DRAGON_AAS    ] }
+  { name: "OPERATION NEPTUNE",          icon: { button: 'Neptune_B.svg',    thumbnail: 'Neptune.svg' },    maps: [ VADSO_AAS, BEIRUT_AAS    ] },
+  { name: "OPERATION INDEPENDENCE",     icon: { button: 'RisingFist_B.svg', thumbnail:  'RisingFist.svg'}, maps: [ KOZELSK_AAS, Sbeneh_AAS  ] },
+  { name: "OPERATION FORTRESS",         icon: { button: 'Fortress_B.svg',   thumbnail: 'Fortress.svg' },   maps: [ MUTTRAH_AAS, HADES_AAS   ] },
+  { name: "OPERATION ABLE ANVIL",       icon: { button: 'Anvil_B.svg',      thumbnail:  'Anvil.svg'},      maps: [ SHIJIA_AAS, KASHAN_AAS   ] },
+  { name: "OPERATION ROLLING THUNDER",  icon: { button: 'Lightning_B.svg',  thumbnail:  'Lightning.svg'},  maps: [ YAMALIA_AAS, XIANG_AAS   ] },
+  { name: "OPERATION GUARDIAN",         icon: { button: 'Shield_B.svg',     thumbnail:  'Shield.svg'},     maps: [ SAAREMA_AAS, DRANG_AAS   ] },
+  { name: "OPERATION VICIOUS FALCON",   icon: { button: 'Falcon_B.svg',     thumbnail:  'Falcon.svg'},     maps: [ DOVRE_AAS, BLACKGOLD_AAS ] },
+  { name: "OPERATION SUDDEN STRIKE",    icon: { button: 'Sword_B.svg',      thumbnail:  'Sword.svg'},      maps: [ NUJIMAA_AAS, KHAMY_AAS   ] },
+  { name: "OPERATION NIMBLE THRUST",    icon: { button: 'Strike_B.svg',     thumbnail:  'Strike.svg'},     maps: [ WANDA_AAS, DRAGON_AAS    ] }
 ]
 
 
@@ -48,15 +49,19 @@ var TOGGLE = { toggle: 0, close: 1, open: 2 };
 
 //Static Vars
 var MAPS = [];
-
+var PATH;
 //onLoad
 $(window).ready(init);
+ 
+ //$('head').append('<link rel="stylesheet" href="css/pr-tournament-boardmap.css" type="text/css" />');
+ 
  
 /**
  * Wrapper for everything required for the initialization
  */
 function init(){
-  
+  PATH = $('#AbsPath').attr('data-path');
+  AbsPath
   //Create the maximum required stripes
   var stripes = 0; 
   for(index in OPERATIONS){
@@ -73,7 +78,7 @@ function init(){
   buildOpHeader();
   $('.header-team-name.team-a').text(TEAMS[0].initials);
   $('.header-team-name.team-b').text(TEAMS[1].initials);
-  setPoints(0, 0);
+  setPoints(TEAMS[0].points, TEAMS[1].points);
   
   //Show 1st Operation
   displayOperation(OPERATIONS[0]);
@@ -87,6 +92,8 @@ function init(){
   $('.op-selector.right').click(function(){zappingOperation(1);});
   $('.op-selector.left').click(function(){zappingOperation(-1);});
   //$('#Op-Name').click(function(){alert('hello');});
+  
+  $('#Board-Outter').height($('#Board').height());
 }
 
 
@@ -103,12 +110,12 @@ function buildOpStripes(stripes, container){
     
     stripe += '<div class="op-stripe">';
     stripe += '<div class="world-map"></div>';
-
-    stripe += '<div class="op-map-thumnail-wrapper">';
+    stripe += '<div class="filter"></div>';
+    /*stripe += '<div class="op-map-thumnail-wrapper">';
     stripe += '<div class="op-map-thumnail-base"></div>';
     stripe += '<img class="op-map-thumnail-image" />';
     stripe += '<div class="op-map-thumnail-text"></div>';
-    stripe += '</div>';//closes .op-map-thumnail-wrapper
+    stripe += '</div>';//closes .op-map-thumnail-wrapper*/
     
    
     var pos = 'left';
@@ -116,27 +123,33 @@ function buildOpStripes(stripes, container){
       pos = 'right';*/
     
     stripe += '<div class="op-details ' + pos + '">';
+    
+    stripe += '<div class="op-map-background-wrapper">';
+    stripe += '<div class="op-map-background"></div>';
+    stripe += '<div class="op-map-effect"></div>';
+    stripe += '</div>';//closes .op-map-background-wrapper
+    
     stripe += '<div class="op-map-name"></div>';
     stripe += '<div class="op-map-layer"></div>';
     
     stripe += '<div class="op-teams-container">';
     
     stripe += '<div class="op-team team-a">';
-    stripe += '<div class="op-team-name"></div>';
+    stripe += '<div class="op-team-logo" style="background-image: url('+PATH+'img/'+ TEAMS[0].logo +');"></div>';
     stripe += '<div class="op-team-faction-container">';
+    stripe += '<div class="op-team-faction-flag"></div>'
     stripe += '<div class="op-team-faction" ></div>'
-    stripe += '<img class="op-team-faction-img" />'
     stripe += '</div>';//Closes .op-team-faction-container
     stripe += '<div class="op-team-tickets"></div>';
     stripe += '</div>';//Closes .op-team.team-a
     
-    stripe += '<div class="op-teams-versus">Vs</div>';
+    stripe += '<div class="op-teams-versus">vs</div>';
     
     stripe += '<div class="op-team team-b">';
-    stripe += '<div class="op-team-name"></div>';
+    stripe += '<div class="op-team-logo" style="background-image: url('+PATH+'img/'+ TEAMS[1].logo +');"></div>';
     stripe += '<div class="op-team-faction-container">';
+    stripe += '<div class="op-team-faction-flag"></div>'
     stripe += '<div class="op-team-faction"></div>';
-    stripe += '<img class="op-team-faction-img" />'
     stripe += '</div>';//Closes .op-team-faction-container
     stripe += '<div class="op-team-tickets"></div>';
     stripe += '</div>';//Closes .op-team.team-b
@@ -158,6 +171,7 @@ function buildOpHeader(){
   for(index in OPERATIONS){
     var button = '';
     button += '<div class="op-button" data-operation="' + index + '">'
+    button += '<img src="'+PATH+'img/icons/' + OPERATIONS[index].icon.button+ '" />';
     button += '</div>';
     container.append(button);
   }
@@ -172,24 +186,25 @@ function initMap(mapContainer){
    return new jvm.Map({
     container: mapContainer,
     map: 'world_mill',
-    backgroundColor: '#B7BBBE',
+    backgroundColor: '#656565',
     zoomOnScroll: false,
     zoomButtons: false,
+    panOnDrag:  false,
     regionStyle: {
       initial: {
-        fill: 'black',
-        "fill-opacity": 0.2,
-        stroke: 'black',
-        "stroke-width":'0px',
+        fill: '#404040',
+        "fill-opacity": 1,
+        stroke: '#404040',
+        "stroke-width":'1px',
         "stroke-opacity": 1
       },
       hover: {
-        "fill-opacity": 0.2,
+        "fill-opacity": 1,
         cursor: 'initial'
       },
       selected: {
-        fill: 'black',
-        "fill-opacity": 0.2
+        fill: '#404040',
+        "fill-opacity": 1
       },
       selectedHover: {
       }
@@ -208,7 +223,7 @@ function displayOperation(operation){
   
   var stripes = $('.op-stripe');
   $('#Op-Name').text(operation.name);
-  //$('#Op-Name').attr('data-operations')
+  $('#Op-Logo').css('background-image', 'url('+PATH+'img/icons/'+operation.icon.thumbnail+')')
   
   stripes.each(function(index){
     
@@ -235,9 +250,20 @@ function populateStripe(stripe, map){
   stripe.find('.op-map-name').html(map.name);
   stripe.find('.op-map-layer').html(map.layer);
   
-  stripe.find('.team-a .op-team-name').html(map.team[0].name);
-  stripe.find('.team-a .op-team-faction').text(map.team[0].faction);
-  stripe.find('.team-a .op-team-tickets').text(tickets[0] + ' Tickets');
+  for (t = 0; t < 2; t++) { 
+   var team = t==0 ? '.team-a ' : '.team-b ';
+   
+    stripe.find( team + '.op-team-faction').text(map.team[t].faction);
+    stripe.find( team + '.op-team-tickets').text(tickets[t] + ' TICKETS');
+    
+    var flag = typeof map.team[t].flag == 'undefined' ? 'flags/'+map.team[t].faction+'.png' : map.team[t].flag;
+    stripe.find( team + '.op-team-faction-flag').css('background-image', 'url('+PATH+'img/'+flag+')' );
+  }
+  
+  
+  //stripe.find('.team-a .op-team-logo').html(TEAM[0].logo);
+ 
+  
   
   if( map.played ){
     var winner = tickets[0] > tickets[1] ? 0 : 1;
@@ -247,12 +273,7 @@ function populateStripe(stripe, map){
      stripe.find('.op-teams-versus').removeAttr('data-alt');
   }
 
-  
-  stripe.find('.team-b .op-team-name').html(map.team[1].name);
-  stripe.find('.team-b .op-team-faction').text(map.team[1].faction);  
-  stripe.find('.team-b .op-team-tickets').text(tickets[1] + ' Tickets');
-  
-  stripe.find('img.op-map-thumnail-image').attr('src', 'img/thumbnail.png');
+  stripe.find('.op-map-background').css('background-image', 'url('+PATH+'img/'+map.background+')');
 }
 
 
@@ -307,11 +328,10 @@ function onOperationSelected(){
   * Event handler -  User clicks on details of a stripe (Operation's map)
   */
 function onClickDetails(){
-  var alreadyOpen = $(this).hasClass('extended');
-  $('.op-details.extended').each(function(){ toggleDetails( $(this), TOGGLE.close ); });
+ 
+ // $('.op-details.extended').each(function(){ toggleDetails( $(this), TOGGLE.close ); });
   
-  if(!alreadyOpen)
-    toggleDetails($(this), TOGGLE.open);
+    toggleDetails($(this), TOGGLE.toggle);
 }
 
 
@@ -355,8 +375,8 @@ function toggleDetails(container, toggle){
   * @param {int} teamB - Points of team B
   */
 function setPoints(teamA, teamB){
-  $('.header-team-points.team-a').addClass(TEAMS[0].css).text(teamA);
-  $('.header-team-points.team-b').addClass(TEAMS[1].css).text(teamB);
+  $('.header-team-points.team-a').css('color', TEAMS[0].color).text(teamA);
+  $('.header-team-points.team-b').css('color', TEAMS[1].color).text(teamB);
 }
 
 /**

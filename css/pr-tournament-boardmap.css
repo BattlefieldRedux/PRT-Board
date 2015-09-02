@@ -23,19 +23,26 @@
 	     url('font/dinengschriftstd-webfont.svg#webfont') format('svg');
 }
  
- *{
+#Board-Outter *{
   font-family: 'DINEngschriftStd', Arial, sans-serif;
  }
  
 /* **********************************************
- *                 REMOVE THIS!!!!!!!!
+ *                    PADDING FIX
  * ********************************************** */
-html {
-    background-color: #373737;
+
+
+div#Board-Outter {
+  position: relative;
+  height: 100%;
+  width: 100%;
 }
 
+
 div#Board {
-    border: 1px solid #969696;
+  position: absolute;
+  top: -6px;
+  left: -6px;
 }
 
 /* **********************************************
@@ -61,6 +68,17 @@ div#Board {
     right: 0;
 }
  
+
+#Board-Outter *{
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+	
+
 /* **********************************************
  *                 Operations Board
  * ********************************************** */
@@ -84,15 +102,16 @@ div#Op-Header-inner {
   white-space: nowrap;
   position: relative;
   width: 200%;
-  top: 20px;
   margin: 0px 7px;
 }
 
 div#Op-Header-Inner {
-    height: 70px;
+    height: 68px;
     color: white;
     text-align: center;
     font-size: 35px;
+    overflow: hidden;
+    padding: 1px 0px;
 }
 
 
@@ -112,13 +131,18 @@ div#Op-Header-Inner {
 	width: 51px;
 	background-color: #2D2D2D;
 	float: left;
-	padding: 14px 0px;
+	padding: 10px 0px;
+	font-size: 40px;
 }
+
+
+
 
 #Op-Header-Icons-Wrapper{
 	width: 550px;
 	float: left;
 	height: 100%;
+	text-align: center;
 }
 
  /* **********************************************
@@ -126,8 +150,10 @@ div#Op-Header-Inner {
  * ********************************************** */
  
 div#Op-Name-Wrapper{
-    height: 50px;
+    height: 54px;
     position: relative;
+    border-top: 1px solid black;
+    text-align: center;
 }
 
 div#Op-Name-Wrapper .op-selector{
@@ -139,37 +165,46 @@ div#Op-Name-Wrapper .op-selector{
 
 div#Op-Name {
     color: #BDBDBD;
-    width: 100%;
+    display: table;
     text-align: center;
-    font-size: 39px;
+    font-size: 42px;
     height: 100%;
-    border-top: 1px solid black;
     border-bottom: 1px solid black;
     position: relative;
+    overflow: hidden;
+    top: 2px;
+    float: left;
 }
 
 
-
+.op-selector{
+	 float: left;
+	 position: relative;
+	 height: 100%;
+	 width: 10px;
+	 margin: 25px 0px;
+}
 
 .op-selector.left:before, .op-selector.right:after{
     content: "";
-    position: absolute;
     width: 0;
     height: 0;     
-    border-bottom: 10px solid rgba(250, 233, 233, 0);
-    border-top: 10px solid transparent; 
-    top: 15px;
+    border-bottom: 14px solid transparent;
+    border-top: 14px solid transparent; 
     margin: 0 5px;
+   
+    position: absolute;
+    top: -5px;
 }
 
 .op-selector.left:before {
-    border-right: 10px solid #424242;            
-    left: 0;
+    border-right: 12px solid #404040;            
+    left: -23px;
 }
 
 .op-selector.right:after {
-    border-left: 10px solid #424242;
-    right: 0;
+    border-left: 12px solid #404040;
+    right: -23px;
 }
 
 
@@ -180,12 +215,11 @@ div#Op-Name {
  
 .op-stripe {
   position: relative;
-  height: 300px;
-  width: 100%;
+  height: 298px;
+  width: 786px;
   background-color: #686868;
-  border-top: 1px solid black;
-  border-bottom: 1px solid black;
   margin-bottom: 1px;
+  border: 1px solid black;
 }
 
 .op-stripe.hide {
@@ -297,11 +331,11 @@ div#Op-fake-base {
   height: 100%;
   position: absolute;
   top: 0;
-  background-color: rgba(0, 0, 0, 0.7);
   color: white;
   transition: all 300ms;
   background-position: center;
   /*background-attachment: fixed;*/
+  /*letter-spacing: 2px;*/
 }
 
 .left.op-details {
@@ -315,7 +349,7 @@ div#Op-fake-base {
 .op-details:hover:after {
     content: "";
     border-bottom: 25px solid transparent;   
-    border-left: 15px solid rgba(0,0,0, 0.7);   
+    border-left: 15px solid rgba(0,0,0, 0.5);   
     border-top: 25px solid transparent;
     position: absolute;
     right: -15px;
@@ -324,18 +358,85 @@ div#Op-fake-base {
 
 
 .op-details.extended {
-  width: 90%;
-  left: 5%; 
-  background-image: url('../img/maps/charlies_point/background.png');
-
+  width: 92%;
+  left: 4%; 
+  /*background-image: url('../img/maps/charlies_point/background.png');*/
 
 }
 
+
+
+.op-team-faction-container {
+    position: relative;
+    text-align: start;
+    margin: 0 auto;
+    display: table;
+    top: -12px;
+    transition: top 300ms;
+}
+.extended .op-team-faction-container {
+    top: -60px;
+}
+
+
+
 .op-details.extended:hover:after {
-    border-right: 15px solid white;   
+    border-right: 15px solid rgba(255,255,255,0.5);   
     border-left: 0px solid transparent;   
     right: 0px;
 }
+
+.op-team-faction-flag {
+    opacity: 0;
+    height: 24px;
+    float: left;
+    width: 0;
+    margin: 4px 0px;
+    
+    transition: all 300ms;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.extended .op-team-faction-flag {
+    width: 35px;
+    opacity: 1;
+    margin: 4px 5px;
+}
+
+
+
+
+
+/* **********************************************
+ *              Operation Buttons/Icons
+ * ********************************************** */
+
+ 
+div#Op-Header-Icons {
+    display: table;
+    margin: 15px auto;
+    float: left;
+}
+
+
+
+.op-button {
+    float: left;
+}
+
+.op-button img {
+    height: 28px;
+    opacity: 0.5;
+    width: 28px;
+    margin: 0px 2px;
+}
+
+.op-button.selected img {
+    opacity: 1;
+}
+
 
 /* **********************************************
  *              Operation Details: Tickets
@@ -351,55 +452,70 @@ div#Op-fake-base {
 .extended .op-team-tickets {
     /*display: block;*/
    
-    top: -60px;
-    font-size: 22px;
+    top: -61px;
+    font-size: 25px;
     opacity: 1;
 }
 
 /* **********************************************
  *              Operation Details
  * ********************************************** */
- .op-team-name {
- 	position: relative;
- 	transition: top 300ms;
-    font-size: 35px;
-    top: 0;
+ 
+ .op-team-logo {
+    width: 60px;
+    height: 60px;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin: 0 auto;
+    position: relative;
+    top: -17px;
+    transition: top 300ms;
 }
-.extended .op-team-name {
-    top: -110px
+
+
+.extended .op-team-logo {
+    top: -124px;
 }
+
+
 .op-teams-versus {
-    font-size: 30px;
+    font-size: 26px;
     margin: 11px 0px;
+    position: relative;
+    top: 9px;
+    white-space: nowrap;
 }
 
 
 .op-team-faction {
 	transition: top 300ms;
-    font-size: 22px;
+    
+	font-size: 28px;
     position: relative;
-    top: -6px;
+    
+	float: left;
 }
 
 
 .extended .op-team-faction {
-    top: -40px;
 }
 
 .op-map-name {
     position: absolute;
-    top: 55px;
+    top: 43px;
     text-align: center;
     width: 100%;
-    font-size: 35px;
+    font-size: 49px;
 }
 
 .op-map-layer {
     position: absolute;
-    top: 99px;
-    font-size: 28px;
+    top: 101px;
+    font-size: 38px;
     width: 100%;
     text-align: center;
+    font-variant: small-caps;
 }
 
 .op-teams-container {
@@ -413,13 +529,13 @@ div#Op-fake-base {
 }
 
 .op-team {
-    width: 35%;
+    width: 40%;
     float: left;
     position: relative;
 }
 
 .op-teams-versus {
-    width: 30%;
+    width: 20%;
     float: left;
 }
  
@@ -437,59 +553,55 @@ div#Op-fake-base {
 }
 
 
-/* **********************************************
- *               Operation Thumbnail: Container
- * ********************************************** */
-.op-map-thumnail-wrapper{
-	position: absolute;
-	height: 100%;
-	width: 324px;
-	right: 0;
-	top: 0;
-}
-
 
 /* **********************************************
  *               Operation Thumbnail: Base
  * ********************************************** */
-.op-map-thumnail-base {
-	width: 204px;
-	height: 120px;
-	background: white;
-	margin: 0 auto;
-	position: relative;
-	top: 90px;
-  
+ 
+.op-map-background {
+  width: 100%;
+  height: 100%;
+  background-image: ;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0;
+  transition: opacity 300ms;
 }
 
-.op-map-thumnail-base:before {
-	content: "";
-	position: absolute;
-	top: -57px;
-	left: 0;
-	width: 0;
-	height: 0;
-	border-left: 102px solid transparent;
-	border-right: 102px solid transparent;
-	border-bottom: 57px solid white;
-}
-.op-map-thumnail-base:after {
-	content: "";
-	position: absolute;
-	bottom: -57px;
-	left: 0;
-	width: 0;
-	height: 0;
-	border-left: 102px solid transparent;
-	border-right: 102px solid transparent;
-	border-top: 57px solid white;
+.op-map-background-wrapper {
+    width: 100%;
+    height: 100%;
 }
 
-/* **********************************************
- *               Operation Thumbnail: Image
- * ********************************************** */
-img.op-map-thumnail-image {
-  position: absolute;
-  top: 55px;
-  left: 80px;
+.extended .op-map-background {
+    opacity: 1;
+}
+
+.op-map-effect {
+    background-color: rgba(0,0,0,0.5);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#Op-Logo {
+    width: 35px;
+    height: 53px;
+    float: left;
+    margin: 0px 14px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: red;
+}
+
+
+.filter {
+    width: 100%;
+    height: 100%;
+   /* background-image: url(../img/filter.png);*/
+    position: absolute;
+    top: 0;
 }
