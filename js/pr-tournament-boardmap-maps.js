@@ -217,7 +217,7 @@ var DRAGON_AAS = {
   name: "DRAGON FLY",
   layer: "AAS STD",
   team : [ { name: teamA, faction: "MIL" }, { name: teamB, faction: "GB" } ],
-  viewport: { lat: 43.15, lng: 45.24, zoom: 4 },
+  viewport: { lat: 43.18, lng: 20.99, zoom: 4 },
   tickets: [ 110, 110],
   background: 'maps/dragon_fly/background.jpg',
   played: false
