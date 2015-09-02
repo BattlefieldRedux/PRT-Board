@@ -43,7 +43,7 @@ var BEIRUT_AAS = {
  
 var KOZELSK_AAS = {
   key: "kozelsk_aas_std",
-  name: "Kozelsk",
+  name: "KOZELSK",
   layer: "AAS STD",
   team : [ { name: teamA, faction: "RU" }, { name: teamB, faction: "MIL" } ],
   viewport: { lat: 54.02, lng: 35.48, zoom: 4 },
@@ -54,7 +54,7 @@ var KOZELSK_AAS = {
 
 var Sbeneh_AAS = {
   key: "Sbeneh_aas_std",
-  name: "Sbeneh",
+  name: "SBENEH",
   layer: "AAS STD",
   team : [ { name: teamA, faction: "FSA" }, { name: teamB, faction: "MEC" } ],
   viewport: { lat: 33.26, lng: 36.17, zoom: 4 },
@@ -65,7 +65,7 @@ var Sbeneh_AAS = {
 
 var MUTTRAH_AAS = {
   key: "muttrah_aas_std",
-  name: "Muttrah",
+  name: "MUTTRAH CITY",
   layer: "AAS STD",
   team : [ { name: teamA, faction: "USMC" }, { name: teamB, faction: "MEC" } ],
   viewport: { lat: 23.37, lng: 58.34, zoom: 4 },
@@ -76,7 +76,7 @@ var MUTTRAH_AAS = {
 
 var HADES_AAS = {
   key: "hades_aas_std",
-  name: "Hades Peak",
+  name: "HADES PEAK",
   layer: "AAS STD",
   team : [ { name: teamA, faction: "RU" }, { name: teamB, faction: "NL" } ],
   viewport: { lat: 44.14, lng: 39.36, zoom: 4 },
@@ -87,7 +87,7 @@ var HADES_AAS = {
 
 var SHIJIA_AAS = {
   key: "shijia_aas_std",
-  name: "Shijia Valley",
+  name: "SHIJIA VALLEY",
   layer: "AAS STD",
   team : [ { name: teamA, faction: "PLA" }, { name: teamB, faction: "GB" } ],
   viewport: { lat: 33.03, lng: 111.13, zoom: 4 },
@@ -98,7 +98,7 @@ var SHIJIA_AAS = {
 
 var KASHAN_AAS = {
   key: "kashan_aas_std",
-  name: "Kashan",
+  name: "KASHAN",
   layer: "AAS STD",
   team : [ { name: teamA, faction: "US/CA" }, { name: teamB, faction: "MEC" } ],
   viewport: { lat: 33.59, lng: 51.28, zoom: 4 },
@@ -109,7 +109,7 @@ var KASHAN_AAS = {
 
 var YAMALIA_AAS = {
   key: "yamalia_aas_std",
-  name: "Yamalia",
+  name: "YAMALIA",
   layer: "AAS STD",
   team : [ { name: teamA, faction: "CA" }, { name: teamB, faction: "RU" } ],
   viewport: { lat: 66.59, lng: 74.51, zoom: 4 },
@@ -120,7 +120,7 @@ var YAMALIA_AAS = {
 
 var XIANG_AAS = {
   key: "xiang_aas_std",
-  name: "Xiangshan",
+  name: "XIANGSHAN",
   layer: "AAS STD",
   team : [ { name: teamA, faction: "PLA" }, { name: teamB, faction: "FR" } ],
   viewport: { lat: 29.26, lng: 121.43, zoom: 4 },
@@ -132,7 +132,7 @@ var XIANG_AAS = {
 
 var SAAREMA_AAS = {
   key: "saarema_aas_std",
-  name: "Saaremaa",
+  name: "SAAREMA",
   layer: "AAS STD",
   team : [ { name: teamA, faction: "USMC" }, { name: teamB, faction: "RU" } ],
   viewport: { lat: 58.25, lng: 22.30, zoom: 4 },
@@ -143,7 +143,7 @@ var SAAREMA_AAS = {
 
 var DRANG_AAS = {
   key: "drang_aas_std",
-  name: "Ia Drang",
+  name: "IA DRANG",
   layer: "AAS STD",
   team : [ { name: teamA, faction: "US" }, { name: teamB, faction: "NVA" } ],
   viewport: { lat: 13.33, lng: 107.42, zoom: 4 },
@@ -155,7 +155,7 @@ var DRANG_AAS = {
 
 var DOVRE_AAS = {
   key: "dovre_aas_std",
-  name: "Dovre",
+  name: "DOVRE",
   layer: "AAS STD",
   team : [ { name: teamA, faction: "RU" }, { name: teamB, faction: "GER/NL" } ],
   viewport: { lat: 62.2, lng: 9.28, zoom: 4 },
@@ -167,7 +167,7 @@ var DOVRE_AAS = {
 
 var BLACKGOLD_AAS = {
   key: "black_gold_aas_std",
-  name: "Black Gold",
+  name: "BLACK GOLD",
   layer: "AAS STD",
   team : [ { name: teamA, faction: "PLA" }, { name: teamB, faction: "RU" } ],
   viewport: { lat: 43.29, lng: 87.43, zoom: 4 },
@@ -179,7 +179,7 @@ var BLACKGOLD_AAS = {
 
 var NUJIMAA_AAS = {
   key: "nujimaa_aas_std",
-  name: "Nujimaa",
+  name: "NUJIMAA",
   layer: "AAS STD",
   team : [ { name: teamA, faction: "RU" }, { name: teamB, faction: "FR" } ],
   viewport: { lat: 60.57, lng: 28.32, zoom: 4 },
@@ -192,7 +192,7 @@ var NUJIMAA_AAS = {
 
 var KHAMY_AAS = {
   key: "khamy_aas_std",
-  name: "Khamisiyah",
+  name: "KHAMISIYAH",
   layer: "AAS STD",
   team : [ { name: teamA, faction: "US" }, { name: teamB, faction: "MEC" } ],
   viewport: { lat: 31.14, lng: 46.19, zoom: 4 },
@@ -203,7 +203,7 @@ var KHAMY_AAS = {
 
 var WANDA_AAS = {
   key: "wanda_shan_aas_std",
-  name: "Wanda Shan",
+  name: "WANDA SHAN",
   layer: "AAS STD",
   team : [ { name: teamA, faction: "PLA" }, { name: teamB, faction: "GER" } ],
   viewport: { lat: 48, lng: 129, zoom: 4 },
@@ -214,7 +214,7 @@ var WANDA_AAS = {
 
 var DRAGON_AAS = {
   key: "dragon_fly_aas_std",
-  name: "Dragon Fly",
+  name: "DRAGON FLY",
   layer: "AAS STD",
   team : [ { name: teamA, faction: "MIL" }, { name: teamB, faction: "GB" } ],
   viewport: { lat: 43.15, lng: 45.24, zoom: 4 },
