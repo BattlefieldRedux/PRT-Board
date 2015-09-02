@@ -13,121 +13,198 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+   
 
+
+ 
  /* **********************************************
  *               CONFIGURATION VALUES 
  * ********************************************** */
-var MAP_1 = {
-  key: "Muttrah",
-  name: "Kashan",
-  description: [ "INS Infantry" , '<img src="img/flag.jpg" class="logo">PAC (650 TICKETS)', '<img src="img/flag.jpg" class="logo">EMF (650 TICKETS)' ],
-  latLng: [ -40.72, -45.14] 
-}
-
-var MAP_2 = {
-  key: "Beirut",
-  name: "Kashan",
-  description: [ "CNC Alternative" , '<img src="img/flag.jpg" class="logo">PAC (650 TICKETS)', '<img src="img/flag.jpg" class="logo">EMF (650 TICKETS)' ],
-  latLng: [ 40.47, 21.85] 
-}
-
-var MAP_3 = {
-  key: "Kashan",
-  name: "Kashan",
-  description: [ "AAS Standard" , '<img src="img/flag.jpg" class="logo">PAC (650 TICKETS)', '<img src="img/flag.jpg" class="logo">EMF (650 TICKETS)' ],
-  latLng: [ 20.47, 41.85] 
-}
-
-var MAP_4 = {
-  key: "Fallujah",
-  name: "Kashan",
-  description: [ "AAS Large" , '<img src="img/flag.jpg" class="logo">PAC (650 TICKETS)', '<img src="img/flag.jpg" class="logo">EMF (650 TICKETS)' ],
-  latLng: [ 60.47, 91.85] 
-}
-
+ 
+var TEAMS = [ 
+  {name: "Lorem" , initials:"EAA", logo: 'thumbnail.png', color:"#ff0000", points: '12'}, 
+  {name: "Ipsium", initials:"PSC", logo: 'thumbnail.png', color:"rgb(0, 255, 0)", points: '10' } 
+];
+ 
 // Operation: (string) name, (array:MAP) map
 var OPERATIONS = [
-  [ "Operation 1",  [ MAP_1, MAP_2 ] , "rgb(12, 125, 56)" ],
-  [ "Operation 2",  [ MAP_3, MAP_4 ] , "#124286" ],
-  [ "Operation 3",  [ MAP_1, MAP_2 ] , "#124286" ],
-  [ "Operation 4",  [ MAP_3, MAP_4 ] , "#124286" ],
-  [ "Operation 5",  [ MAP_1, MAP_2 ] , "#124286" ],
-  [ "Operation 6",  [ MAP_3, MAP_4 ] , "#124286" ],
-  [ "Operation 7",  [ MAP_1, MAP_2 ] , "#124286" ],
-  [ "Operation 8",  [ MAP_3, MAP_4 ] , "#124286" ],
-  [ "Operation 9",  [ MAP_1, MAP_2 ] , "#124286" ],
-  [ "Operation 10", [ MAP_3, MAP_4 ] , "#124286" ],
-  [ "Operation 11", [ MAP_1, MAP_2 ] , "#124286" ]
-  
-  
+  { name: "OPERATION NEPTUNE",          icon: { button: 'icons/Neptune_B.svg',    thumbnail:  'icons/Neptune.svg' },   maps: [ VADSO_AAS, BEIRUT_AAS    ] },
+  { name: "OPERATION INDEPENDENCE",     icon: { button: 'icons/RisingFist_B.svg', thumbnail:  'icons/RisingFist.svg'}, maps: [ KOZELSK_AAS, Sbeneh_AAS  ] },
+  { name: "OPERATION FORTRESS",         icon: { button: 'icons/Fortress_B.svg',   thumbnail: ' icons/Fortress.svg' },  maps: [ MUTTRAH_AAS, HADES_AAS   ] },
+  { name: "OPERATION ABLE ANVIL",       icon: { button: 'icons/Anvil_B.svg',      thumbnail:  'icons/Anvil.svg'},      maps: [ SHIJIA_AAS, KASHAN_AAS   ] },
+  { name: "OPERATION ROLLING THUNDER",  icon: { button: 'icons/Lightning_B.svg',  thumbnail:  'icons/Lightning.svg'},  maps: [ YAMALIA_AAS, XIANG_AAS   ] },
+  { name: "OPERATION GUARDIAN",         icon: { button: 'icons/Shield_B.svg',     thumbnail:  'icons/Shield.svg'},     maps: [ SAAREMA_AAS, DRANG_AAS   ] },
+  { name: "OPERATION VICIOUS FALCON",   icon: { button: 'icons/Falcon_B.svg',     thumbnail:  'icons/Falcon.svg'},     maps: [ DOVRE_AAS, BLACKGOLD_AAS ] },
+  { name: "OPERATION SUDDEN STRIKE",    icon: { button: 'icons/Sword_B.svg',      thumbnail:  'icons/Sword.svg'},      maps: [ NUJIMAA_AAS, KHAMY_AAS   ] },
+  { name: "OPERATION NIMBLE THRUST",    icon: { button: 'icons/Strike_B.svg',     thumbnail:  'icons/Strike.svg'},     maps: [ WANDA_AAS, DRAGON_AAS    ] }
 ]
 
 
 /* **********************************************
  *        DO NOT EDIT BEYHOND THIS POINT
  * ********************************************** */
-
- var MAP;
  
- $(window).ready(init);
+ //Public Enums
+var TOGGLE = { toggle: 0, close: 1, open: 2 };
+
+//Static Vars
+var MAPS = [];
+var PATH;
+//onLoad
+$(window).ready(init);
+ 
+ //$('head').append('<link rel="stylesheet" href="css/pr-tournament-boardmap.css" type="text/css" />');
+ 
  
 /**
  * Wrapper for everything required for the initialization
  */
 function init(){
-  initMap();
-  
-  //Init Operation List
-  for(var index in OPERATIONS){
-    $("#op-list").append('<li class="op-name">' + OPERATIONS[index][0] + '</li>');
-  }
-  
-  //Init markers
+  PATH = $('#AbsPath').attr('data-path');
+  AbsPath
+  //Create the maximum required stripes
+  var stripes = 0; 
   for(index in OPERATIONS){
-    
-    for(map_index in OPERATIONS[index][1]){
-      var args = [];
-      args.push(index)
-      MAP.addMarker(OPERATIONS[index][1][map_index].key, {latLng: OPERATIONS[index][1][map_index].latLng, Operation: index, style : { initial: {    fill: 'red'   } }} );
-    }
+    stripes = Math.max(0, OPERATIONS[index].maps.length);
   }
- 
+  buildOpStripes(stripes, $('#Op-Strip-Container'));
+  
+  //Initialize every stripe
+  $('.world-map').each(function(index){ 
+    MAPS.push(initMap($(this))); 
+  });
+  
+  //Build header
+  buildOpHeader();
+  $('.header-team-name.team-a').text(TEAMS[0].initials);
+  $('.header-team-name.team-b').text(TEAMS[1].initials);
+  setPoints(TEAMS[0].points, TEAMS[1].points);
+  
+  //Show 1st Operation
+  displayOperation(OPERATIONS[0]);
+  $('.op-button').first().addClass('selected');
+   
+  //Add click listeners to header's buttons
+  $('#Op-Header').on('click', '.op-button', onOperationSelected);
+  
+  $('#Op-Strip-Container').on('click', '.op-details', onClickDetails);
+  
+  $('.op-selector.right').click(function(){zappingOperation(1);});
+  $('.op-selector.left').click(function(){zappingOperation(-1);});
+  //$('#Op-Name').click(function(){alert('hello');});
+  
+  $('#Board-Outter').height($('#Board').height());
+}
 
-  //Init Behaviour on hovering Operations
-  $("#op-list").on('mouseover', 'li', onOperationTitleMouseEnter);
-  $("#op-list").on('mouseout', 'li', onOperationTitleMouseLeave);
-  $("#world-map").on('mouseover', '.jvectormap-marker', onMarkerEnter);
-  $("#world-map").on('mouseout', '.jvectormap-marker', onMarkerLeave);
+
+/**
+  * Handles the construction and initialization of every stripe
+  * @param {int} stripes - Number of stripes to build
+  * @param {Object|Jquery} container - Container that will hold the stripes
+  */
+function buildOpStripes(stripes, container){
+  
+  for(i = 0; i < stripes; i++){
+    
+    var stripe = '';
+    
+    stripe += '<div class="op-stripe">';
+    stripe += '<div class="world-map"></div>';
+    stripe += '<div class="filter"></div>';
+    /*stripe += '<div class="op-map-thumnail-wrapper">';
+    stripe += '<div class="op-map-thumnail-base"></div>';
+    stripe += '<img class="op-map-thumnail-image" />';
+    stripe += '<div class="op-map-thumnail-text"></div>';
+    stripe += '</div>';//closes .op-map-thumnail-wrapper*/
+    
+   
+    var pos = 'left';
+    /*if( ( i % 2 ) == 0)
+      pos = 'right';*/
+    
+    stripe += '<div class="op-details ' + pos + '">';
+    
+    stripe += '<div class="op-map-background-wrapper">';
+    stripe += '<div class="op-map-background"></div>';
+    stripe += '<div class="op-map-effect"></div>';
+    stripe += '</div>';//closes .op-map-background-wrapper
+    
+    stripe += '<div class="op-map-name"></div>';
+    stripe += '<div class="op-map-layer"></div>';
+    
+    stripe += '<div class="op-teams-container">';
+    
+    stripe += '<div class="op-team team-a">';
+    stripe += '<div class="op-team-logo" style="background-image: url('+PATH+'img/'+ TEAMS[0].logo +');"></div>';
+    stripe += '<div class="op-team-faction-container">';
+    stripe += '<div class="op-team-faction-flag"></div>'
+    stripe += '<div class="op-team-faction" ></div>'
+    stripe += '</div>';//Closes .op-team-faction-container
+    stripe += '<div class="op-team-tickets"></div>';
+    stripe += '</div>';//Closes .op-team.team-a
+    
+    stripe += '<div class="op-teams-versus">vs</div>';
+    
+    stripe += '<div class="op-team team-b">';
+    stripe += '<div class="op-team-logo" style="background-image: url('+PATH+'img/'+ TEAMS[1].logo +');"></div>';
+    stripe += '<div class="op-team-faction-container">';
+    stripe += '<div class="op-team-faction-flag"></div>'
+    stripe += '<div class="op-team-faction"></div>';
+    stripe += '</div>';//Closes .op-team-faction-container
+    stripe += '<div class="op-team-tickets"></div>';
+    stripe += '</div>';//Closes .op-team.team-b
+    
+    stripe += '</div>';//Closes '.op-teams-container'
+    stripe += '</div>';//Closes '.op-details'
+    stripe += '</div>';//Closes '.op-stripe
+    
+    container.append(stripe);
+  }
 }
 
 /**
- * Initializes the MAP
- */
-function initMap(){
+  * Handles the construction and initialization of the header (Operation buttons and selectors)
+  */
+function buildOpHeader(){
+  var container = $('#Op-Header-Icons');
   
-  MAP = new jvm.Map({
-    container: $('#world-map'),
+  for(index in OPERATIONS){
+    var button = '';
+    button += '<div class="op-button" data-operation="' + index + '">'
+    button += '<img src="'+PATH+'img/' + OPERATIONS[index].icon.button+ '" />';
+    button += '</div>';
+    container.append(button);
+  }
+}
+
+/**
+  * Handles the initialization of a map
+  * @param {Object|Jquery} mapContainer - Container that will hold the map
+  */
+function initMap(mapContainer){
+  
+   return new jvm.Map({
+    container: mapContainer,
     map: 'world_mill',
-    backgroundColor: '#B7BBBE',
+    backgroundColor: '#656565',
     zoomOnScroll: false,
-    zoomMax: 1,
     zoomButtons: false,
+    panOnDrag:  false,
     regionStyle: {
       initial: {
-        fill: 'black',
-        "fill-opacity": 0.2,
-        stroke: 'black',
-        "stroke-width":'0px',
-        "stroke-opacity": 1
+        fill: '#404040',
+        "fill-opacity": 1,
+        stroke: '#404040',
+        "stroke-width":'1px',
+        "stroke-opacity": 0
       },
       hover: {
-        "fill-opacity": 0.2,
+        "fill-opacity": 1,
         cursor: 'initial'
       },
       selected: {
-        fill: 'black',
-        "fill-opacity": 0.2
+        fill: '#404040',
+        "fill-opacity": 1
       },
       selectedHover: {
       }
@@ -135,179 +212,182 @@ function initMap(){
   });
 }
 
-
 /**
-  * Returns an array of Jquery elements, this elements are the markers respective to the given operation index
-  * @param {int} opIndex
+  * Updates Header and Stripes with the information of the given operation
+  * @param {Object|Operation} operation - Operation
   */
-function getMarkers(opIndex){
-  var markers = $('.jvectormap-marker');
+function displayOperation(operation){
+  //Hide extended operation details if any
+  $('.op-details.extended').each(function(){  toggleDetails($(this), TOGGLE.close); })
   
-  var maps = [];
-  for( index in OPERATIONS[opIndex][1] ){
-    maps.push( OPERATIONS[opIndex][1][index].key );
-  }
   
-  var markersFiltered = [];
-  markers.each(function(){
-    if( $.inArray( $(this).attr('data-index'), maps) > -1){
-      markersFiltered.push( $(this) );
+  var stripes = $('.op-stripe');
+  $('#Op-Name').text(operation.name);
+  $('#Op-Logo').css('background-image', 'url('+PATH+'img/'+operation.icon.thumbnail+')')
+  
+  stripes.each(function(index){
+    
+    if(index >= operation.maps.length){
+      $(this).addClass('hide');
+      return;
+    }else{
+      $(this).removeClass('hide');
+      populateStripe( $(this), operation.maps[index]);
+      createMarkerAndFocus( MAPS[index], operation.maps[index] );
     }
   });
-  
-  return markersFiltered;
 }
 
 /**
-  * For some reason Jquery.addClass is failing on some elements (blame jvectormap) this is the workaround
-  * @param {Object|Jquery} DOM element that will receive the new class
-  * @param {string} name of class to add
+  * Given a stripe it updates its information with the given Operation object
+  * @param {Object|Jquery} stripe - Stripe that is the container to all the information
+  * @param {Object|Map} operation - Map information object
   */
-function FIX_addClass(object, nClass){
-  var oldClass = object.attr('class');
-  object.attr('class', oldClass + ' ' + nClass);
+function populateStripe(stripe, map){
+  var tickets = map.tickets;
+  
+
+  stripe.find('.op-map-name').html(map.name);
+  stripe.find('.op-map-layer').html(map.layer);
+  
+  for (t = 0; t < 2; t++) { 
+   var team = t==0 ? '.team-a ' : '.team-b ';
+   
+    stripe.find( team + '.op-team-faction').text(map.team[t].faction);
+    stripe.find( team + '.op-team-tickets').text(tickets[t] + ' TICKETS');
+    
+    var flag = typeof map.team[t].flag == 'undefined' ? 'flags/'+map.team[t].faction+'.png' : map.team[t].flag;
+    stripe.find( team + '.op-team-faction-flag').css('background-image', 'url('+PATH+'img/'+flag+')' );
+  }
+  
+  
+  //stripe.find('.team-a .op-team-logo').html(TEAM[0].logo);
+ 
+  
+  
+  if( map.played ){
+    var winner = tickets[0] > tickets[1] ? 0 : 1;
+    var message = map.team[winner].name + ' Victory';
+    stripe.find('.op-teams-versus').attr('data-alt', message);
+  }else{
+     stripe.find('.op-teams-versus').removeAttr('data-alt');
+  }
+
+  stripe.find('.op-map-background').css('background-image', 'url('+PATH+'img/'+map.background+')');
+}
+
+
+/**
+  * Creates a marker and focus on it
+  * @param {Object|JVM} map - Map to create marker and focus
+  * @param {Object|Map} data - Map information with the latitude, longitude and zoom
+  */
+function createMarkerAndFocus(map, data){
+  map.removeAllMarkers();
+  
+  map.addMarker(map.key, {latLng: [ data.viewport.lat , data.viewport.lng] });
+
+  map.setFocus({
+    animate: true,
+    lat: data.viewport.lat, 
+    lng: data.viewport.lng,
+    scale: data.viewport.zoom
+  });
 }
 
 /**
-  * For some reason Jquery.removeClass is failing on some elements (blame jvectormap) this is the workaround
-  * @param {Object|Jquery} DOM element that we'll remove the class
-  * @param {string} name of class to remove
+  * Switch Operations in relation to the current one
+  * @param {int} step - Position of new operation in relation to current one
   */
-function FIX_removeClass(object, rClass){
-  var oldClass = object.attr('class');
+function zappingOperation(step){  
+  var currentoperationSelected = $('.op-button.selected');
+  var opIndex = parseInt(currentoperationSelected.attr('data-operation'));
   
-  if(oldClass == undefined)
+  var nOperations = $('.op-button').length;
+  var nextOper = mod(opIndex + step, nOperations) ;
+  currentoperationSelected.removeClass('selected');
+  
+  
+  $('.op-button:nth-child('+(nextOper+1)+')').addClass('selected');
+  displayOperation(OPERATIONS[nextOper]);
+
+}
+
+
+/**
+  * Event handler -  User selects an operation
+  */
+function onOperationSelected(){
+  $('.op-button.selected').removeClass('selected');
+  $(this).addClass('selected');
+  var operation = parseInt($(this).attr('data-operation'));
+  displayOperation(OPERATIONS[operation]);
+}
+
+/**
+  * Event handler -  User clicks on details of a stripe (Operation's map)
+  */
+function onClickDetails(){
+ 
+ // $('.op-details.extended').each(function(){ toggleDetails( $(this), TOGGLE.close ); });
+  
+    toggleDetails($(this), TOGGLE.toggle);
+}
+
+
+/**
+  * Opens, Closes or Toggles a given Stripe
+  * @param {Object|Jquery} container - Map detail's object to close/open
+  * @param {int} toggle - New state: open/close/toggle
+  */
+function toggleDetails(container, toggle){
+  
+  if( (toggle == TOGGLE.open) && container.hasClass('extended'))
     return;
   
-  var newClass = oldClass.replace(rClass, '');
-  object.attr('class', newClass);
-}
-
-
-
-
-
-
-
-function onOperationTitleMouseEnter(){
-  var pos = $(this).prevAll().length;
- 
-  var markers = getMarkers(pos);   
-     
-  for(index in markers){
-    //FIXME: NOT WORKING FOR SOME REASON
-    //markers[index].addClass("prt-selected"); 
-    FIX_addClass(markers[index], 'prt-selected');
-  }
+   
   
-  //Calculate average location of the markers
-  var sum = 0;
-  for(index in markers){
-    sum += parseInt(markers[index].attr('cx'));
-  }
-  var average = sum / markers.length;
-  
-  //FIXME: Remove magic number!!!!
-  if(average > 300){
-   showOpOverlay(markers, OPERATIONS[pos], { overlayClass: 'ocean', descriptionClass: 'right' });
+  if( (toggle == TOGGLE.close) && !container.hasClass('extended'))
+    return;
+
+  if( (toggle == TOGGLE.close) || ((toggle == TOGGLE.toggle) && container.hasClass('extended') ) ){
+    container.removeClass('extended');
   }else{
-    showOpOverlay(markers, OPERATIONS[pos], { overlayClass: 'ocean', descriptionClass: 'left' });
+    container.addClass('extended');
   }
   
-}
-
-function onOperationTitleMouseLeave(){       
-  //FIXME: NOT WORKING FOR SOME REASON
-  //$('.jvectormap-marker.prt-selected').removeClass("prt-selected");
-  FIX_removeClass($('.jvectormap-marker.prt-selected'), 'prt-selected');
-  hideOpOverlay();
-}
-
-
-function onMarkerEnter(){
+  var versus =  container.find('.op-teams-versus');
+  var alt = versus.attr('data-alt');
   
-  var marker = MAP.markers[$(this).attr('data-index')];
-  var operation = marker.config.Operation;
-  
-  var markers = getMarkers(operation);   
-     
-  for(index in markers){
-    //FIXME: NOT WORKING FOR SOME REASON
-    //markers[index].addClass("prt-selected"); 
-    FIX_addClass(markers[index], 'prt-selected');
+  if (alt != 'undefined'){
+    versus.attr('data-alt', versus.text());
+    versus.text(alt);
   }
   
  
   
-  //Calculate average location of the markers
-  var sum = 0;
-  for(index in markers){
-    sum += parseInt(markers[index].attr('cx'));
-  }
-  var average = sum / markers.length;
-  
-  //FIXME: Remove magic number!!!!
-  if(average > 300){
-    showOpOverlay(markers, OPERATIONS[operation], { overlayClass: 'ocean', descriptionClass: 'right' });
-  }else{
-    showOpOverlay(markers, OPERATIONS[operation], { overlayClass: 'ocean', descriptionClass: 'left' });
-  }
+ 
 }
-
-function onMarkerLeave(){
-  //FIXME: NOT WORKING FOR SOME REASON
-  //$('.jvectormap-marker.prt-selected').removeClass("prt-selected");
-  FIX_removeClass($('.jvectormap-marker.prt-selected'), 'prt-selected');
-  
-  hideOpOverlay();
-
-}
-
 
 /**
- * Handles everything regarding hiding the Operation details
- *
- */
-function hideOpOverlay(){
-  $('#world-map').removeClass('show-op-overlay');
-  $('#world-map svg g:nth-child(3) ').html('');
+  * Sets the points in the Header
+  * @param {int} teamA - Points of team A
+  * @param {int} teamB - Points of team B
+  */
+function setPoints(teamA, teamB){
+  $('.header-team-points.team-a').css('color', TEAMS[0].color).text(teamA);
+  $('.header-team-points.team-b').css('color', TEAMS[1].color).text(teamB);
 }
-
-
-
-
 
 /**
- * Handles everything regarding showing the Operation details
- * @param {Array|Jquery} Array of the markers Jquery objects
- * @param {Object|Operation} The object regarding an Operation
- * @param {Object| { overlayClass: string, descriptionClass: string}} An object with extra classes to add to the overlay
- *
- */
-function showOpOverlay(markers, Operation, styles){
-  $('#world-map').addClass('show-op-overlay');
-  $('#op-details').addClass(styles.overlayClass);
-  
-  var descHolders = $('#op-details .op-description');
-  descHolders.addClass(styles.descriptionClass);
-  
-  
-  descHolders.each(function(index){
-    $(this).html('');//Reset
-    
-    //Append Descriptions
-    for( var d in Operation[1][index].description ){
-      $(this).append("<p>"+Operation[1][index].description[d]+"</p>");
-    }
-  });
-  
-  //Draw Line towards Op-Overlay
-  for(index in markers){
-    var pos = index;
-    var img = $('#op-details .op:nth-child(' +(++pos)+ ') img');
-    drawLine($('#world-map svg g:nth-child(3) '),  {left: parseFloat(markers[index].attr('x')), top: parseFloat(markers[index].attr('y')) },  calculateCenter('world-map', img));
-  }
+  * Calculates the modulus (Native mod,%, is broken)
+  * @param {int} n
+  * @param {int} m
+  */
+function mod(n, m) {
+  return ((n % m) + m) % m;
 }
+
 
 /**
  * Given a SVG container it adds a line between 2 points 
@@ -318,7 +398,7 @@ function showOpOverlay(markers, Operation, styles){
 function drawLine(container, origin, destiny){
  
   var dist = calculateDistance(origin.left, origin.top, destiny.left, destiny.top);
-  var nHtml = ' <line x1="' +origin.left+ '" y1="' +origin.top+ '" x2="' +destiny.left+ '" y2="' +destiny.top+ '" style="stroke-dasharray: ' +dist+ 'px; stroke-dashoffset: ' +dist+ 'px " />';
+  var nHtml = ' <line x1="' +origin.left+ '" y1="' +origin.top+ '" x2="' +destiny.left+ '" y2="' +destiny.top+ '" style="stroke:rgb(255,0,0);stroke-width:2; stroke-dasharray: ' +dist+ 'px; stroke-dashoffset: ' +dist+ 'px " />';
   nHtml += container.html();
   container.html(nHtml);
 }
