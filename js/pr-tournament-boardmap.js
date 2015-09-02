@@ -30,7 +30,7 @@ var TEAMS = [
 var OPERATIONS = [
   { name: "OPERATION NEPTUNE",          icon: { button: 'icons/Neptune_B.png',    thumbnail:  'icons/Neptune.png' },   maps: [ VADSO_AAS, BEIRUT_AAS    ] },
   { name: "OPERATION INDEPENDENCE",     icon: { button: 'icons/RisingFist_B.png', thumbnail:  'icons/RisingFist.png'}, maps: [ KOZELSK_AAS, Sbeneh_AAS  ] },
-  { name: "OPERATION FORTRESS",         icon: { button: 'icons/Fortress_B.png',   thumbnail: ' icons/Fortress.png' },  maps: [ MUTTRAH_AAS, HADES_AAS   ] },
+  { name: "OPERATION FORTRESS",         icon: { button: 'icons/Fortress_B.png',   thumbnail:  'icons/Fortress.png' },  maps: [ MUTTRAH_AAS, HADES_AAS   ] },
   { name: "OPERATION ABLE ANVIL",       icon: { button: 'icons/Anvil_B.png',      thumbnail:  'icons/Anvil.png'},      maps: [ SHIJIA_AAS, KASHAN_AAS   ] },
   { name: "OPERATION ROLLING THUNDER",  icon: { button: 'icons/Lightning_B.png',  thumbnail:  'icons/Lightning.png'},  maps: [ YAMALIA_AAS, XIANG_AAS   ] },
   { name: "OPERATION GUARDIAN",         icon: { button: 'icons/Shield_B.png',     thumbnail:  'icons/Shield.png'},     maps: [ SAAREMA_AAS, DRANG_AAS   ] },
