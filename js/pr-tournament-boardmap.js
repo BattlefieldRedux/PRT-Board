@@ -28,15 +28,15 @@ var TEAMS = [
  
 // Operation: (string) name, (array:MAP) map
 var OPERATIONS = [
-  { name: "OPERATION NEPTUNE",          icon: { button: 'Neptune_B.svg',    thumbnail: 'Neptune.svg' },    maps: [ VADSO_AAS, BEIRUT_AAS    ] },
-  { name: "OPERATION INDEPENDENCE",     icon: { button: 'RisingFist_B.svg', thumbnail:  'RisingFist.svg'}, maps: [ KOZELSK_AAS, Sbeneh_AAS  ] },
-  { name: "OPERATION FORTRESS",         icon: { button: 'Fortress_B.svg',   thumbnail: 'Fortress.svg' },   maps: [ MUTTRAH_AAS, HADES_AAS   ] },
-  { name: "OPERATION ABLE ANVIL",       icon: { button: 'Anvil_B.svg',      thumbnail:  'Anvil.svg'},      maps: [ SHIJIA_AAS, KASHAN_AAS   ] },
-  { name: "OPERATION ROLLING THUNDER",  icon: { button: 'Lightning_B.svg',  thumbnail:  'Lightning.svg'},  maps: [ YAMALIA_AAS, XIANG_AAS   ] },
-  { name: "OPERATION GUARDIAN",         icon: { button: 'Shield_B.svg',     thumbnail:  'Shield.svg'},     maps: [ SAAREMA_AAS, DRANG_AAS   ] },
-  { name: "OPERATION VICIOUS FALCON",   icon: { button: 'Falcon_B.svg',     thumbnail:  'Falcon.svg'},     maps: [ DOVRE_AAS, BLACKGOLD_AAS ] },
-  { name: "OPERATION SUDDEN STRIKE",    icon: { button: 'Sword_B.svg',      thumbnail:  'Sword.svg'},      maps: [ NUJIMAA_AAS, KHAMY_AAS   ] },
-  { name: "OPERATION NIMBLE THRUST",    icon: { button: 'Strike_B.svg',     thumbnail:  'Strike.svg'},     maps: [ WANDA_AAS, DRAGON_AAS    ] }
+  { name: "OPERATION NEPTUNE",          icon: { button: 'icons/Neptune_B.svg',    thumbnail:  'icons/Neptune.svg' },   maps: [ VADSO_AAS, BEIRUT_AAS    ] },
+  { name: "OPERATION INDEPENDENCE",     icon: { button: 'icons/RisingFist_B.svg', thumbnail:  'icons/RisingFist.svg'}, maps: [ KOZELSK_AAS, Sbeneh_AAS  ] },
+  { name: "OPERATION FORTRESS",         icon: { button: 'icons/Fortress_B.svg',   thumbnail: ' icons/Fortress.svg' },  maps: [ MUTTRAH_AAS, HADES_AAS   ] },
+  { name: "OPERATION ABLE ANVIL",       icon: { button: 'icons/Anvil_B.svg',      thumbnail:  'icons/Anvil.svg'},      maps: [ SHIJIA_AAS, KASHAN_AAS   ] },
+  { name: "OPERATION ROLLING THUNDER",  icon: { button: 'icons/Lightning_B.svg',  thumbnail:  'icons/Lightning.svg'},  maps: [ YAMALIA_AAS, XIANG_AAS   ] },
+  { name: "OPERATION GUARDIAN",         icon: { button: 'icons/Shield_B.svg',     thumbnail:  'icons/Shield.svg'},     maps: [ SAAREMA_AAS, DRANG_AAS   ] },
+  { name: "OPERATION VICIOUS FALCON",   icon: { button: 'icons/Falcon_B.svg',     thumbnail:  'icons/Falcon.svg'},     maps: [ DOVRE_AAS, BLACKGOLD_AAS ] },
+  { name: "OPERATION SUDDEN STRIKE",    icon: { button: 'icons/Sword_B.svg',      thumbnail:  'icons/Sword.svg'},      maps: [ NUJIMAA_AAS, KHAMY_AAS   ] },
+  { name: "OPERATION NIMBLE THRUST",    icon: { button: 'icons/Strike_B.svg',     thumbnail:  'icons/Strike.svg'},     maps: [ WANDA_AAS, DRAGON_AAS    ] }
 ]
 
 
@@ -171,7 +171,7 @@ function buildOpHeader(){
   for(index in OPERATIONS){
     var button = '';
     button += '<div class="op-button" data-operation="' + index + '">'
-    button += '<img src="'+PATH+'img/icons/' + OPERATIONS[index].icon.button+ '" />';
+    button += '<img src="'+PATH+'img/' + OPERATIONS[index].icon.button+ '" />';
     button += '</div>';
     container.append(button);
   }
@@ -196,7 +196,7 @@ function initMap(mapContainer){
         "fill-opacity": 1,
         stroke: '#404040',
         "stroke-width":'1px',
-        "stroke-opacity": 1
+        "stroke-opacity": 0
       },
       hover: {
         "fill-opacity": 1,
@@ -223,7 +223,7 @@ function displayOperation(operation){
   
   var stripes = $('.op-stripe');
   $('#Op-Name').text(operation.name);
-  $('#Op-Logo').css('background-image', 'url('+PATH+'img/icons/'+operation.icon.thumbnail+')')
+  $('#Op-Logo').css('background-image', 'url('+PATH+'img/'+operation.icon.thumbnail+')')
   
   stripes.each(function(index){
     
