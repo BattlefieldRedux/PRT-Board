@@ -22,8 +22,8 @@
  * ********************************************** */
  
 var TEAMS = [ 
-  {name: "Lorem" , initials:"EAA", logo: 'thumbnail.png', color:"#ff0000", points: '12'}, 
-  {name: "Ipsium", initials:"PSC", logo: 'thumbnail.png', color:"rgb(0, 255, 0)", points: '10' } 
+  {name: "Lorem" , initials:"EAA", logo: 'thumbnail.png', color:"#ff0000", points: '0'}, 
+  {name: "Ipsium", initials:"PSC", logo: 'thumbnail.png', color:"rgb(0, 255, 0)", points: '0' } 
 ];
  
 // Operation: (string) name, (array:MAP) map
