@@ -5,17 +5,19 @@ Althought the configuration of the board is handled by messing directly with the
 
 ### Teams
 ```Javascript
-var TEAMS = [
-    {name: "Super Team Bluefor", initials: "STB", logo: 'thumbnail.png', color: "#01ff41", points: '12' },
-    {name: "Super Team Opfor", initials: "STO",  logo: 'thumbnail.png', color: "rgb(100, 24, 200)", points: '12' }
-];
+var TEAMS ={
+  a: { initials:"MRF", logo: 'icons/team_icons_MRF.png', color:"#9d831d", points: '0' },
+  b: { initials:"PDI", logo: 'icons/team_icons_PDI.png', color:"#0b8f9e", points: '0' }
+};
 ```
 Here is were you set information, regarding both teams:
-* **name** - The complete name of the Team
 * **initials** - The initials of the Team's name
 * **logo** - The path to the image
 * **color** - Main color of the Team; It can be either hexadecimal or RGB
 * **points** - The points of the team
+
+The team represented in the ```a``` field will be displayed on the left side and ```b``` team will be on the right.
+
 
 ### Maps
 
@@ -24,9 +26,10 @@ var VADSO_AAS = {
   key: "vadso_city_aas_std",
   name: "VADSO CITY",
   layer: "AAS STD",
-  team : [ { name: '', faction: '', flag: '' }, { name: '', faction: '' } ],
+  team: { a: "RU" , b:  "GB" },
+  flags: { b: 'flags/us.png' },
   viewport: { lat: 70.04, lng: 29.43, zoom: 4 },
-  tickets: [ 110, 110],
+  tickets: { a: 110, b: 110 },
   background: 'maps/vadso_city/background.jpg',
   played: false
 }
@@ -38,14 +41,14 @@ The first line just creates a variable, ```var```, to use later with that name a
 * **key** - can be anything as long its a unique string w/o spaces
 * **name** - Name of the map
 * **layer** - Name of the Layer, including size
-* **team** - Teams and factions that will  play on this map
-  * **flag** - OPTIONAL - path to the faction's flag, if omited the path will be ```img/flags/<team.faction>.png```
+* **team** - factions in play on this map
+* **flags** - OPTIONAL - path to override the faction's flag, if omited the path will be ```img/flags/<team.faction>```
 * **viewport** - Positioning and zoom level of the local of the map
-* **tickets** - Tickets for the teams (Order matters)
+* **tickets** - Tickets for the teams
 * **background** - Path to the image that will apear in the details when expanded
-* **played** - Tells if map was played or is yet to be played
+* **played** - if ```true``` a 'victorous' message will appear to the team w/ more tickets, if ```false``` the tickets diference will be ignored (DRAWs are not implemented)
 
-### Maps
+### Operations
 ```Javascript
 var OPERATIONS = [
   { name: "OPERATION SUDDEN STRIKE",    icon: { button: 'icons/Sword_B.svg',      thumbnail:  'icons/Sword.svg'},      maps: [ NUJIMAA_AAS, KHAMY_AAS   ] },
