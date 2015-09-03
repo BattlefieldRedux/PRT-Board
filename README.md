@@ -39,7 +39,7 @@ The first line just creates a variable, ```var```, to use later with that name a
 * **name** - Name of the map
 * **layer** - Name of the Layer, including size
 * **team** - Teams and factions that will  play on this map
-  * **flag** - OPTIONAL - path to the faction's flag, if omited the path will be ```img/flags/<team.faction>```
+  * **flag** - OPTIONAL - path to the faction's flag, if omited the path will be ```img/flags/<team.faction>.png```
 * **viewport** - Positioning and zoom level of the local of the map
 * **tickets** - Tickets for the teams (Order matters)
 * **background** - Path to the image that will apear in the details when expanded
