@@ -23,8 +23,8 @@
  //A: LEFT SIDE
  //B: RIGHT SIDE
 var TEAMS ={
-  a: { initials:"MRF", logo: 'icons/team_icons_MRF.png',   color:"#9d831d", points: '0' },
-  b: { initials:"PDI", logo: 'icons/team_icons_PDI.png',   color:"#0b8f9e", points: '0' }
+  b: { initials:"MRF", logo: 'icons/team_icons_MRF.png',   color:"#9d831d", points: '0' },
+  a: { initials:"PDI", logo: 'icons/team_icons_PDI.png',   color:"#0b8f9e", points: '0' }
 };
  
 

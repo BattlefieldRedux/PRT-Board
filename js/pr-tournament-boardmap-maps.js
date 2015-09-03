@@ -14,10 +14,6 @@
  * limitations under the License.
  */
  
-var teamA = "PSC";
-var teamB = "EAA";
- 
- 
  
  var VADSO_AAS = {
   key: "vadso_city_aas_std",
