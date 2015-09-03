@@ -287,7 +287,7 @@ function populateStripe(stripe, map){
 function createMarkerAndFocus(map, data){
   map.removeAllMarkers();
   
-  map.addMarker(map.key, {latLng: [ data.viewport.lat , data.viewport.lng] });
+  map.addMarker("unique", {latLng: [ data.viewport.lat , data.viewport.lng] });
 
   map.setFocus({
     animate: true,

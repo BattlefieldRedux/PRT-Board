@@ -16,7 +16,6 @@
  
  
  var VADSO_AAS = {
-  key: "vadso_city_aas_std",
   name: "VADSO CITY",
   layer: "AAS STD",
   team: { a: "RU" , b:  "GB" },
@@ -27,7 +26,6 @@
 }
  
 var BEIRUT_AAS = {
-  key: "beirut_aas_std",
   name: "BEIRUT",
   layer: "AAS STD",
   team : { a: "IDF" , b:  "RU" },
@@ -38,7 +36,6 @@ var BEIRUT_AAS = {
 }
  
 var KOZELSK_AAS = {
-  key: "kozelsk_aas_std",
   name: "KOZELSK",
   layer: "AAS STD",
   team :  { a: "RU" , b:  "MIL" },
@@ -49,7 +46,6 @@ var KOZELSK_AAS = {
 }
 
 var Sbeneh_AAS = {
-  key: "Sbeneh_aas_std",
   name: "SBENEH",
   layer: "AAS STD",
   team :  { a: "FSA" , b:  "MEC" },
@@ -60,7 +56,6 @@ var Sbeneh_AAS = {
 }
 
 var MUTTRAH_AAS = {
-  key: "muttrah_aas_std",
   name: "MUTTRAH CITY",
   layer: "AAS STD",
   team :  { a: "USMC" , b:  "MEC" },
@@ -71,7 +66,6 @@ var MUTTRAH_AAS = {
 }
 
 var HADES_AAS = {
-  key: "hades_aas_std",
   name: "HADES PEAK",
   layer: "AAS STD",
   team :  { a: "RU" , b:  "NL" },
@@ -82,7 +76,6 @@ var HADES_AAS = {
 }
 
 var SHIJIA_AAS = {
-  key: "shijia_aas_std",
   name: "SHIJIA VALLEY",
   layer: "AAS STD",
   team :  { a: "PLA" , b:  "GB" },
@@ -93,7 +86,6 @@ var SHIJIA_AAS = {
 }
 
 var KASHAN_AAS = {
-  key: "kashan_aas_std",
   name: "KASHAN DESERT",
   layer: "AAS STD",
   team : { a: "CA" , b:  "MEC" },
@@ -104,7 +96,6 @@ var KASHAN_AAS = {
 }
 
 var YAMALIA_AAS = {
-  key: "yamalia_aas_std",
   name: "YAMALIA",
   layer: "AAS STD",
   team : { a: "CA" , b:  "RU" },
@@ -115,7 +106,6 @@ var YAMALIA_AAS = {
 }
 
 var XIANG_AAS = {
-  key: "xiang_aas_std",
   name: "XIANGSHAN",
   layer: "AAS STD",
   team : { a: "PLA" , b:  "FR" },
@@ -127,7 +117,6 @@ var XIANG_AAS = {
 
 
 var SAAREMA_AAS = {
-  key: "saarema_aas_std",
   name: "SAAREMA",
   layer: "AAS STD",
   team : { a: "USMC" , b:  "RU" },
@@ -138,7 +127,6 @@ var SAAREMA_AAS = {
 }
 
 var DRANG_AAS = {
-  key: "drang_aas_std",
   name: "IA DRANG",
   layer: "AAS STD",
   team : { a: "US" , b:  "NVA" },
@@ -150,7 +138,6 @@ var DRANG_AAS = {
 
 
 var DOVRE_AAS = {
-  key: "dovre_aas_std",
   name: "DOVRE",
   layer: "AAS STD",
   team : { a: "RU" , b:  "NL" },
@@ -162,7 +149,6 @@ var DOVRE_AAS = {
 
 
 var BLACKGOLD_AAS = {
-  key: "black_gold_aas_std",
   name: "BLACK GOLD",
   layer: "AAS STD",
   team : { a: "PLA" , b:  "RU" },
@@ -174,7 +160,6 @@ var BLACKGOLD_AAS = {
 
 
 var NUJIMAA_AAS = {
-  key: "nujimaa_aas_std",
   name: "NUIJAMAA",
   layer: "AAS STD",
   team : { a: "RU" , b:  "FR" },
@@ -187,7 +172,6 @@ var NUJIMAA_AAS = {
 
 
 var KHAMY_AAS = {
-  key: "khamy_aas_std",
   name: "KHAMISIYAH",
   layer: "AAS STD",
   team : { a: "US" , b:  "MEC" },
@@ -198,7 +182,6 @@ var KHAMY_AAS = {
 }
 
 var WANDA_AAS = {
-  key: "wanda_shan_aas_std",
   name: "WANDA SHAN",
   layer: "AAS STD",
   team : { a: "PLA" , b:  "GER" },
@@ -209,7 +192,6 @@ var WANDA_AAS = {
 }
 
 var DRAGON_AAS = {
-  key: "dragon_fly_aas_std",
   name: "DRAGON FLY",
   layer: "AAS STD",
   team : { a: "MIL" , b:  "GB" }, 
