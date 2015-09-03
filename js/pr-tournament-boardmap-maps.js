@@ -94,7 +94,7 @@ var SHIJIA_AAS = {
 
 var KASHAN_AAS = {
   key: "kashan_aas_std",
-  name: "KASHAN",
+  name: "KASHAN DESERT",
   layer: "AAS STD",
   team : { a: "CA" , b:  "MEC" },
   viewport: { lat: 33.59, lng: 51.28, zoom: 4 },
@@ -175,7 +175,7 @@ var BLACKGOLD_AAS = {
 
 var NUJIMAA_AAS = {
   key: "nujimaa_aas_std",
-  name: "NUJIMAA",
+  name: "NUIJAMAA",
   layer: "AAS STD",
   team : { a: "RU" , b:  "FR" },
   viewport: { lat: 60.57, lng: 28.32, zoom: 4 },
