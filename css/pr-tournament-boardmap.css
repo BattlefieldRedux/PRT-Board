@@ -92,7 +92,6 @@ div#Board{
 div#Op-Header {
   width: 100%;
   height: 126px;
-  border-bottom: 1px solid black;
   background-color: #202020;
   position: relative;
   overflow: hidden;
@@ -164,7 +163,7 @@ div#Op-Name-Wrapper .op-selector{
 }
 
 div#Op-Name {
-    color: #BDBDBD;
+    color: white;
     display: table;
     text-align: center;
     font-size: 42px;
@@ -416,7 +415,7 @@ div#Op-fake-base {
  
 div#Op-Header-Icons {
     display: table;
-    margin: 15px auto;
+    margin: 18px auto;
     float: left;
 }
 
@@ -603,4 +602,8 @@ div#Op-Header-Icons {
    /* background-image: url(../img/filter.png);*/
     position: absolute;
     top: 0;
+}
+
+div#Op-Strip-Container {
+    background-color: rgba(0, 0, 0, 0.9);
 }
