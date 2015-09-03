@@ -258,7 +258,11 @@ function populateStripe(stripe, map){
     stripe.find('.team-'+ team + ' .op-team-faction').text(map.team[team]);
     stripe.find('.team-'+ team + ' .op-team-tickets').text(tickets[team] + ' TICKETS');
     
-    var flag = typeof map.flags == 'undefined' ? 'flags/'+map.team[team]+'.png' : map.flags[team];
+    var flag = 'flags/'+map.team[team]+'.png';
+
+    if(typeof map.flags != 'undefined' && typeof map.flags[team] != 'undefined')
+      flag = map.flags[team];
+    
     stripe.find('.team-'+ team + ' .op-team-faction-flag').css('background-image', 'url('+PATH+'img/'+flag+')' );
   }
   
