@@ -16,17 +16,18 @@
    
 
 
- 
  /* **********************************************
  *               CONFIGURATION VALUES 
  * ********************************************** */
  
-var TEAMS = [ 
-  {name: "" , initials:"MRF", logo: 'thumbnail.png', color:"#9d831d", points: '0'}, 
-  {name: "", initials:"PDI", logo: 'thumbnail.png', color:"#0b8f9e", points: '0' }
-];
+ //A: LEFT SIDE
+ //B: RIGHT SIDE
+var TEAMS ={
+  a: { initials:"MRF", logo: 'icons/team_icons_MRF.png',   color:"#9d831d", points: '0' },
+  b: { initials:"PDI", logo: 'icons/team_icons_PDI.png',   color:"#0b8f9e", points: '0' }
+};
  
-// Operation: (string) name, (array:MAP) map
+
 var OPERATIONS = [
   { name: "OPERATION NEPTUNE",          icon: { button: 'icons/Neptune_B.png',    thumbnail:  'icons/Neptune.png' },   maps: [ VADSO_AAS, BEIRUT_AAS    ] },
   { name: "OPERATION INDEPENDENCE",     icon: { button: 'icons/RisingFist_B.png', thumbnail:  'icons/RisingFist.png'}, maps: [ KOZELSK_AAS, Sbeneh_AAS  ] },
@@ -37,7 +38,7 @@ var OPERATIONS = [
   { name: "OPERATION VICIOUS FALCON",   icon: { button: 'icons/Falcon_B.png',     thumbnail:  'icons/Falcon.png'},     maps: [ DOVRE_AAS, BLACKGOLD_AAS ] },
   { name: "OPERATION SUDDEN STRIKE",    icon: { button: 'icons/Sword_B.png',      thumbnail:  'icons/Sword.png'},      maps: [ NUJIMAA_AAS, KHAMY_AAS   ] },
   { name: "OPERATION NIMBLE THRUST",    icon: { button: 'icons/Strike_B.png',     thumbnail:  'icons/Strike.png'},     maps: [ WANDA_AAS, DRAGON_AAS    ] }
-]
+];
 
 
 /* **********************************************
@@ -52,8 +53,6 @@ var MAPS = [];
 var PATH;
 //onLoad
 $(window).ready(init);
- 
- //$('head').append('<link rel="stylesheet" href="css/pr-tournament-boardmap.css" type="text/css" />');
  
  
 /**
@@ -76,9 +75,9 @@ function init(){
   
   //Build header
   buildOpHeader();
-  $('.header-team-name.team-a').text(TEAMS[0].initials);
-  $('.header-team-name.team-b').text(TEAMS[1].initials);
-  setPoints(TEAMS[0].points, TEAMS[1].points);
+  $('.header-team-name.team-a').text(TEAMS.a.initials);
+  $('.header-team-name.team-b').text(TEAMS.b.initials);
+  setPoints(TEAMS.a.points, TEAMS.b.points);
   
   //Show 1st Operation
   displayOperation(OPERATIONS[0]);
@@ -93,6 +92,7 @@ function init(){
   $('.op-selector.left').click(function(){zappingOperation(-1);});
   //$('#Op-Name').click(function(){alert('hello');});
   
+  //Hack: by removing the padding w/ position absolute we need to "fill" the outter DIV programmatically 
   $('#Board-Outter').height($('#Board').height());
 }
 
@@ -135,7 +135,7 @@ function buildOpStripes(stripes, container){
     stripe += '<div class="op-teams-container">';
     
     stripe += '<div class="op-team team-a">';
-    stripe += '<div class="op-team-logo" style="background-image: url('+PATH+'img/'+ TEAMS[0].logo +');"></div>';
+    stripe += '<div class="op-team-logo" style="background-image: url('+PATH+'img/'+ TEAMS.a.logo +');"></div>';
     stripe += '<div class="op-team-faction-container">';
     stripe += '<div class="op-team-faction-flag"></div>'
     stripe += '<div class="op-team-faction" ></div>'
@@ -146,7 +146,7 @@ function buildOpStripes(stripes, container){
     stripe += '<div class="op-teams-versus">vs</div>';
     
     stripe += '<div class="op-team team-b">';
-    stripe += '<div class="op-team-logo" style="background-image: url('+PATH+'img/'+ TEAMS[1].logo +');"></div>';
+    stripe += '<div class="op-team-logo" style="background-image: url('+PATH+'img/'+ TEAMS.b.logo +');"></div>';
     stripe += '<div class="op-team-faction-container">';
     stripe += '<div class="op-team-faction-flag"></div>'
     stripe += '<div class="op-team-faction"></div>';
@@ -251,13 +251,15 @@ function populateStripe(stripe, map){
   stripe.find('.op-map-layer').html(map.layer);
   
   for (t = 0; t < 2; t++) { 
-   var team = t==0 ? '.team-a ' : '.team-b ';
+   var team = t==0 ? 'a' : 'b';
    
-    stripe.find( team + '.op-team-faction').text(map.team[t].faction);
-    stripe.find( team + '.op-team-tickets').text(tickets[t] + ' TICKETS');
+   
+   
+    stripe.find('.team-'+ team + ' .op-team-faction').text(map.team[team]);
+    stripe.find('.team-'+ team + ' .op-team-tickets').text(tickets[team] + ' TICKETS');
     
-    var flag = typeof map.team[t].flag == 'undefined' ? 'flags/'+map.team[t].faction+'.png' : map.team[t].flag;
-    stripe.find( team + '.op-team-faction-flag').css('background-image', 'url('+PATH+'img/'+flag+')' );
+    var flag = typeof map.flags == 'undefined' ? 'flags/'+map.team[team]+'.png' : map.flags[team];
+    stripe.find('.team-'+ team + ' .op-team-faction-flag').css('background-image', 'url('+PATH+'img/'+flag+')' );
   }
   
   
@@ -266,8 +268,8 @@ function populateStripe(stripe, map){
   
   
   if( map.played ){
-    var winner = tickets[0] > tickets[1] ? 0 : 1;
-    var message = map.team[winner].name + ' Victory';
+    var winner = tickets.a > tickets.b ? 'a' : 'b';
+    var message = TEAMS[winner].initials + ' Victory';
     stripe.find('.op-teams-versus').attr('data-alt', message);
   }else{
      stripe.find('.op-teams-versus').removeAttr('data-alt');
@@ -375,8 +377,8 @@ function toggleDetails(container, toggle){
   * @param {int} teamB - Points of team B
   */
 function setPoints(teamA, teamB){
-  $('.header-team-points.team-a').css('color', TEAMS[0].color).text(teamA);
-  $('.header-team-points.team-b').css('color', TEAMS[1].color).text(teamB);
+  $('.header-team-points.team-a').css('color', TEAMS.a.color).text(teamA);
+  $('.header-team-points.team-b').css('color', TEAMS.b.color).text(teamB);
 }
 
 /**
