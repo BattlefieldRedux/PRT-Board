@@ -351,7 +351,7 @@ div#Op-fake-base {
     border-left: 15px solid rgba(0,0,0, 0.5);   
     border-top: 25px solid transparent;
     position: absolute;
-    right: -15px;
+    right: -17px;
     top: 126px;
 }
 
@@ -382,7 +382,7 @@ div#Op-fake-base {
 .op-details.extended:hover:after {
     border-right: 15px solid rgba(255,255,255,0.5);   
     border-left: 0px solid transparent;   
-    right: 0px;
+    right: 2px;
 }
 
 .op-team-faction-flag {
