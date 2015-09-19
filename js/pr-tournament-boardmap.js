@@ -88,7 +88,7 @@ function init(){
   //Add click listeners to header's buttons
   $('#Op-Header').on('click', '.op-button', onOperationSelected);
   
-  $('#Op-Strip-Container').on('click', '.op-details', onClickDetails);
+  $('#Op-Strip-Container').on('click', '.op-stripe', onClickDetails);
   
   $('.op-selector.right').click(function(){zappingOperation(1);});
   $('.op-selector.left').click(function(){zappingOperation(-1);});
@@ -339,7 +339,7 @@ function onClickDetails(){
  
  // $('.op-details.extended').each(function(){ toggleDetails( $(this), TOGGLE.close ); });
   
-    toggleDetails($(this), TOGGLE.toggle);
+    toggleDetails($(this).find(".op-details"), TOGGLE.toggle);
 }
 
 

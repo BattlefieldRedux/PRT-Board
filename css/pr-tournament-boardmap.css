@@ -352,7 +352,7 @@ div#Op-fake-base {
   right: 0;
 }
 
-.op-details:hover:after {
+.op-stripe:hover .op-details:after {
     content: "";
     border-bottom: 25px solid transparent;   
     border-left: 15px solid rgba(0,0,0, 0.5);   
@@ -386,7 +386,7 @@ div#Op-fake-base {
 
 
 
-.op-details.extended:hover:after {
+.op-stripe:hover .op-details.extended:after {
     border-right: 15px solid rgba(255,255,255,0.5);   
     border-left: 0px solid transparent;   
     right: 2px;
