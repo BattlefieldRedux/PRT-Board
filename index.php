@@ -54,6 +54,7 @@
       <div id="Board">
         <div id="Op-Header">
           <div id="Op-Header-Inner">
+            <div class="header-team-logo team-a"></div>
             <div class="header-team-name team-a"></div>
             <div class="header-team-points team-a"></div>
             
@@ -67,6 +68,7 @@
             
             <div class="header-team-points team-b"></div>
             <div class="header-team-name team-b"></div>
+            <div class="header-team-logo team-b"></div>
           </div>
           <div id="Op-Name-Wrapper">
             <div style="display: table; height: 100%; margin: 0 auto;">

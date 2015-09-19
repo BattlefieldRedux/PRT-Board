@@ -101,7 +101,6 @@ div#Op-Header-inner {
   white-space: nowrap;
   position: relative;
   width: 200%;
-  margin: 0px 7px;
 }
 
 div#Op-Header-Inner {
@@ -134,11 +133,19 @@ div#Op-Header-Inner {
 	font-size: 40px;
 }
 
-
+.header-team-logo {
+    width: 69px;
+    height: 69px;
+    float: left;
+    background-image: url();
+    background-position: center;
+    background-size: 70%;
+    background-repeat: no-repeat;
+}
 
 
 #Op-Header-Icons-Wrapper{
-	width: 550px;
+	width: 412px;
 	float: left;
 	height: 100%;
 	text-align: center;

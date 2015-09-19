@@ -77,6 +77,8 @@ function init(){
   buildOpHeader();
   $('.header-team-name.team-a').text(TEAMS.a.initials);
   $('.header-team-name.team-b').text(TEAMS.b.initials);
+  $('.header-team-logo.team-a').css('background-image', 'url('+PATH+'img/'+TEAMS.a.logo+')');
+  $('.header-team-logo.team-b').css('background-image', 'url('+PATH+'img/'+TEAMS.b.logo+')');
   setPoints(TEAMS.a.points, TEAMS.b.points);
   
   //Show 1st Operation
