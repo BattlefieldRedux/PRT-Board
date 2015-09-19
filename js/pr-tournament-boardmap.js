@@ -36,8 +36,8 @@ var OPERATIONS = [
   { name: "OPERATION ROLLING THUNDER",  icon: { button: 'icons/Lightning_B.png',  thumbnail:  'icons/Lightning.png'},  maps: [ YAMALIA_AAS, XIANG_AAS   ] },
   { name: "OPERATION GUARDIAN",         icon: { button: 'icons/Shield_B.png',     thumbnail:  'icons/Shield.png'},     maps: [ SAAREMA_AAS, DRANG_AAS   ] },
   { name: "OPERATION VICIOUS FALCON",   icon: { button: 'icons/Falcon_B.png',     thumbnail:  'icons/Falcon.png'},     maps: [ DOVRE_AAS, BLACKGOLD_AAS ] },
-  { name: "OPERATION SUDDEN STRIKE",    icon: { button: 'icons/Sword_B.png',      thumbnail:  'icons/Sword.png'},      maps: [ NUJIMAA_AAS, KHAMY_AAS   ] },
-  { name: "OPERATION NIMBLE THRUST",    icon: { button: 'icons/Strike_B.png',     thumbnail:  'icons/Strike.png'},     maps: [ WANDA_AAS, DRAGON_AAS    ] }
+  { name: "OPERATION BROADSWORD",       icon: { button: 'icons/Sword_B.png',      thumbnail:  'icons/Sword.png'},      maps: [ NUJIMAA_AAS, KHAMY_AAS   ] },
+  { name: "OPERATION SUDDEN STRIKE",    icon: { button: 'icons/Strike_B.png',     thumbnail:  'icons/Strike.png'},     maps: [ WANDA_AAS, DRAGON_AAS    ] }
 ];
 
 
@@ -188,15 +188,15 @@ function initMap(mapContainer){
    return new jvm.Map({
     container: mapContainer,
     map: 'world_mill',
-    backgroundColor: '#656565',
+    backgroundColor: '#404040',
     zoomOnScroll: false,
     zoomButtons: false,
     panOnDrag:  false,
     regionStyle: {
       initial: {
-        fill: '#404040',
+        fill: '#202020',
         "fill-opacity": 1,
-        stroke: '#404040',
+        stroke: '#202020',
         "stroke-width":'1px',
         "stroke-opacity": 0
       },
@@ -205,7 +205,7 @@ function initMap(mapContainer){
         cursor: 'initial'
       },
       selected: {
-        fill: '#404040',
+        fill: '#202020',
         "fill-opacity": 1
       },
       selectedHover: {
