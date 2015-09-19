@@ -6,13 +6,15 @@ Althought the configuration of the board is handled by messing directly with the
 ### Teams
 ```Javascript
 var TEAMS ={
-  a: { initials:"MRF", logo: 'icons/team_icons_MRF.png', color:"#9d831d", points: '0' },
-  b: { initials:"PDI", logo: 'icons/team_icons_PDI.png', color:"#0b8f9e", points: '0' }
+  a: { initials:"MRF", logo: { header:'icons/team_icons_MRF.png' , details:'icons/team_icons_MRF.png' }, color:"#9d831d", points: '0' },
+  b: { initials:"PDI", logo: { header:'icons/team_icons_PDI.png' , details:'icons/team_icons_PDI.png' }, color:"#0b8f9e", points: '0' }
 };
 ```
 Here is were you set information, regarding both teams:
 * **initials** - The initials of the Team's name
-* **logo** - The path to the image
+* **logo**
+  * **header** - Path to the image that will be displayed in the Header
+  * **details** - Path to the image that will be displayed in every Op-details
 * **color** - Main color of the Team; It can be either hexadecimal or RGB
 * **points** - The points of the team
 

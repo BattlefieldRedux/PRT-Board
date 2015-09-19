@@ -23,8 +23,8 @@
  //A: LEFT SIDE
  //B: RIGHT SIDE
 var TEAMS ={
-  b: { initials:"MRF", logo: 'icons/team_icons_MRF.png',   color:"#9d831d", points: '0' },
-  a: { initials:"PDI", logo: 'icons/team_icons_PDI.png',   color:"#0b8f9e", points: '0' }
+  b: { initials:"MRF", logo: { header:'icons/team_icons_MRF.png' , details:'icons/team_icons_MRF.png' },   color:"#9d831d", points: '0' },
+  a: { initials:"PDI", logo: { header:'icons/team_icons_PDI.png' , details:'icons/team_icons_PDI.png' },   color:"#0b8f9e", points: '0' }
 };
  
 
@@ -77,8 +77,8 @@ function init(){
   buildOpHeader();
   $('.header-team-name.team-a').text(TEAMS.a.initials);
   $('.header-team-name.team-b').text(TEAMS.b.initials);
-  $('.header-team-logo.team-a').css('background-image', 'url('+PATH+'img/'+TEAMS.a.logo+')');
-  $('.header-team-logo.team-b').css('background-image', 'url('+PATH+'img/'+TEAMS.b.logo+')');
+  $('.header-team-logo.team-a').css('background-image', 'url('+PATH+'img/'+TEAMS.a.logo.header+')');
+  $('.header-team-logo.team-b').css('background-image', 'url('+PATH+'img/'+TEAMS.b.logo.header+')');
   setPoints(TEAMS.a.points, TEAMS.b.points);
   
   //Show 1st Operation
@@ -137,7 +137,7 @@ function buildOpStripes(stripes, container){
     stripe += '<div class="op-teams-container">';
     
     stripe += '<div class="op-team team-a">';
-    stripe += '<div class="op-team-logo" style="background-image: url('+PATH+'img/'+ TEAMS.a.logo +');"></div>';
+    stripe += '<div class="op-team-logo" style="background-image: url('+PATH+'img/'+ TEAMS.a.logo.details +');"></div>';
     stripe += '<div class="op-team-faction-container">';
     stripe += '<div class="op-team-faction-flag"></div>'
     stripe += '<div class="op-team-faction" ></div>'
@@ -148,7 +148,7 @@ function buildOpStripes(stripes, container){
     stripe += '<div class="op-teams-versus">vs</div>';
     
     stripe += '<div class="op-team team-b">';
-    stripe += '<div class="op-team-logo" style="background-image: url('+PATH+'img/'+ TEAMS.b.logo +');"></div>';
+    stripe += '<div class="op-team-logo" style="background-image: url('+PATH+'img/'+ TEAMS.b.logo.details +');"></div>';
     stripe += '<div class="op-team-faction-container">';
     stripe += '<div class="op-team-faction-flag"></div>'
     stripe += '<div class="op-team-faction"></div>';
