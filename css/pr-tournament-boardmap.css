@@ -160,6 +160,7 @@ div#Op-Name-Wrapper{
     position: relative;
     border-top: 1px solid black;
     text-align: center;
+    background-color: #333333;
 }
 
 div#Op-Name-Wrapper .op-selector{
