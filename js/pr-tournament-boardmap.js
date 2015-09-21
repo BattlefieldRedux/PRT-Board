@@ -82,8 +82,12 @@ function init(){
   setPoints(TEAMS.a.points, TEAMS.b.points);
   
   //Show 1st Operation
-  displayOperation(OPERATIONS[0]);
-  $('.op-button').first().addClass('selected');
+	var url  = new Url; // curent document URL will be used
+	var opIndex = parseInt(url.query.operation);
+	if(isNaN(opIndex)) opIndex = 0;
+  displayOperation(opIndex);
+	opIndex++;//Required! nth-child is based 1 
+ 
    
   //Add click listeners to header's buttons
   $('#Op-Header').on('click', '.op-button', onOperationSelected);
@@ -92,10 +96,19 @@ function init(){
   
   $('.op-selector.right').click(function(){zappingOperation(1);});
   $('.op-selector.left').click(function(){zappingOperation(-1);});
-  //$('#Op-Name').click(function(){alert('hello');});
   
   //Hack: by removing the padding w/ position absolute we need to "fill" the outter DIV programmatically 
   $('#Board-Outter').height($('#Board').height());
+	
+	window.onpopstate = function(event) {
+		var url  = new Url; // curent document URL will be used
+		var opIndex = parseInt(url.query.operation);
+		if(!isNaN(opIndex)) {
+			displayOperation(opIndex, false);
+			opIndex++;//Required! nth-child is based 1 
+		}
+	
+	};
 }
 
 
@@ -216,9 +229,25 @@ function initMap(mapContainer){
 
 /**
   * Updates Header and Stripes with the information of the given operation
-  * @param {Object|Operation} operation - Operation
+  * @param {int} opIndex - Operation index
   */
-function displayOperation(operation){
+function displayOperation(opIndex, saveHistory){
+	if(typeof saveHistory == 'undefined')
+		saveHistory = true;
+	
+	var operation = OPERATIONS[opIndex];
+
+	
+	if(saveHistory){
+		var url = new Url;
+		url.query.operation = opIndex;
+		history.pushState(null, null, url);
+	}
+		
+	opIndex++; //Required! nth-child is based 1
+	$('.op-button.selected').removeClass('selected');
+	$('.op-button:nth-child('+opIndex+')').addClass('selected');
+	
   //Hide extended operation details if any
   $('.op-details.extended').each(function(){  toggleDetails($(this), TOGGLE.close); })
   
@@ -313,11 +342,8 @@ function zappingOperation(step){
   
   var nOperations = $('.op-button').length;
   var nextOper = mod(opIndex + step, nOperations) ;
-  currentoperationSelected.removeClass('selected');
   
-  
-  $('.op-button:nth-child('+(nextOper+1)+')').addClass('selected');
-  displayOperation(OPERATIONS[nextOper]);
+  displayOperation(nextOper);
 
 }
 
@@ -326,10 +352,8 @@ function zappingOperation(step){
   * Event handler -  User selects an operation
   */
 function onOperationSelected(){
-  $('.op-button.selected').removeClass('selected');
-  $(this).addClass('selected');
   var operation = parseInt($(this).attr('data-operation'));
-  displayOperation(OPERATIONS[operation]);
+  displayOperation(operation);
 }
 
 /**
