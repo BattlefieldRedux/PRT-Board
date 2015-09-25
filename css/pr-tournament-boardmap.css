@@ -202,6 +202,12 @@ div#Op-Name {
    
     position: absolute;
     top: -5px;
+    opacity: 1;
+}
+
+.op-selector.left:hover:before, .op-selector.right:hover:after{
+	cursor: pointer;
+	opacity: 0.9;
 }
 
 .op-selector.left:before {
@@ -438,6 +444,11 @@ div#Op-Header-Icons {
     opacity: 0.5;
     width: 28px;
     margin: 0px 2px;
+}
+
+.op-button img:hover {
+    opacity: 0.7;
+    cursor: pointer;
 }
 
 .op-button.selected img {
