@@ -26,6 +26,7 @@
     '<link rel="stylesheet" href="'.$path.'css/jquery-jvectormap-2.0.4.css" type="text/css" media="screen"/>
     <link rel="stylesheet" href="'.$path.'css/pr-tournament-boardmap.css" type="text/css" media="screen"/>
     <script src="'.$path.'js/jquery-2.1.4.min.js"></script>
+    <script src="'.$path.'js/url.min.js"></script>
     <script src="'.$path.'js/jquery-jvectormap-2.0.4.min.js"></script>
     <script src="'.$path.'js/jquery-jvectormap-world-mill.js"></script>
     <script src="'.$path.'js/pr-tournament-boardmap-maps.js"></script>
