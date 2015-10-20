@@ -437,6 +437,7 @@ div#Op-Header-Icons {
 
 .op-button {
     float: left;
+		position: relative;
 }
 
 .op-button img {
@@ -456,6 +457,22 @@ div#Op-Header-Icons {
 }
 
 
+.op-button.selected:before,.op-button.selected:after {
+    content: "";
+    position: absolute;
+    width: 110%;
+    height: 0;
+    border-top: solid 1px #8F8F8F;
+    left: -5%;
+}
+
+.op-button.selected:before {
+    top: -5px;
+}
+
+.op-button.selected:after {
+    bottom: -5px;
+}
 /* **********************************************
  *              Operation Details: Tickets
  * ********************************************** */
