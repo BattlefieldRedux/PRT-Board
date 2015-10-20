@@ -1,5 +1,4 @@
 # PRT Tournament Board - Configuration
-Work in Progress...
 
 Althought the configuration of the board is handled by messing directly with the Code, you will only need to change a few lines and is nothing that special.
 
@@ -53,13 +52,17 @@ The first line just creates a variable, ```var```, to use later with that name a
 ### Operations
 ```Javascript
 var OPERATIONS = [
-  { name: "OPERATION SUDDEN STRIKE",    icon: { button: 'icons/Sword_B.svg',      thumbnail:  'icons/Sword.svg'},      maps: [ NUJIMAA_AAS, KHAMY_AAS   ] },
-  { name: "OPERATION NIMBLE THRUST",    icon: { button: 'icons/Strike_B.svg',     thumbnail:  'icons/Strike.svg'},     maps: [ WANDA_AAS, DRAGON_AAS    ] }
+  { name: "OPERATION SUDDEN STRIKE",    icon: { button: 'icons/Sword_B.svg',      thumbnail:  'icons/Sword.svg',      active:  'icons/Sword_active.svg'},      maps: [ NUJIMAA_AAS, KHAMY_AAS   ] },
+  { name: "OPERATION NIMBLE THRUST",    icon: { button: 'icons/Strike_B.svg',     thumbnail:  'icons/Strike.svg',     active:  'icons/Strike_active.svg'},     maps: [ WANDA_AAS, DRAGON_AAS    ], active: true }
 ]
 ```
 * **name** -  Name of the Operation
-* **icon** - Path to the images that ill be used in the upper buttons and the in next to the operation's Name
+* **icon**
+  * **button** - Image used in the header when ```active=false``` or is not set
+  * **thumbnail** - Image displayed next to the Operation title
+  * **active** - Image used in the header when ```active=true```
 * **maps** - Collection of mapss that are in play in this Operation (These are the ones you defined earlier)
+* **active** - OPTIONAL - Defines the operation has the one active in the tournament
 
 
 ----
