@@ -29,15 +29,15 @@ var TEAMS ={
  
 
 var OPERATIONS = [
-  { name: "OPERATION NEPTUNE",          icon: { button: 'icons/Neptune_B.png',    thumbnail:  'icons/Neptune.png' },   maps: [ VADSO_AAS, BEIRUT_AAS    ] },
-  { name: "OPERATION INDEPENDENCE",     icon: { button: 'icons/RisingFist_B.png', thumbnail:  'icons/RisingFist.png'}, maps: [ KOZELSK_AAS, Sbeneh_AAS  ] },
-  { name: "OPERATION FORTRESS",         icon: { button: 'icons/Fortress_B.png',   thumbnail:  'icons/Fortress.png' },  maps: [ MUTTRAH_AAS, HADES_AAS   ] },
-  { name: "OPERATION ABLE ANVIL",       icon: { button: 'icons/Anvil_B.png',      thumbnail:  'icons/Anvil.png'},      maps: [ SHIJIA_AAS, KASHAN_AAS   ] },
-  { name: "OPERATION ROLLING THUNDER",  icon: { button: 'icons/Lightning_B.png',  thumbnail:  'icons/Lightning.png'},  maps: [ YAMALIA_AAS, XIANG_AAS   ] },
-  { name: "OPERATION GUARDIAN",         icon: { button: 'icons/Shield_B.png',     thumbnail:  'icons/Shield.png'},     maps: [ SAAREMA_AAS, DRANG_AAS   ] },
-  { name: "OPERATION VICIOUS FALCON",   icon: { button: 'icons/Falcon_B.png',     thumbnail:  'icons/Falcon.png'},     maps: [ DOVRE_AAS, BLACKGOLD_AAS ] },
-  { name: "OPERATION BROADSWORD",       icon: { button: 'icons/Sword_B.png',      thumbnail:  'icons/Sword.png'},      maps: [ NUJIMAA_AAS, KHAMY_AAS   ] },
-  { name: "OPERATION SUDDEN STRIKE",    icon: { button: 'icons/Strike_B.png',     thumbnail:  'icons/Strike.png'},     maps: [ WANDA_AAS, DRAGON_AAS    ] }
+  { name: "OPERATION NEPTUNE",          icon: { button: 'icons/Neptune_B.png',    thumbnail:  'icons/Neptune.png',    active: 'icons/Neptune_B_select.png' },    maps: [ VADSO_AAS, BEIRUT_AAS    ] , active: false},
+  { name: "OPERATION INDEPENDENCE",     icon: { button: 'icons/RisingFist_B.png', thumbnail:  'icons/RisingFist.png', active:  'icons/RisingFist_B_select.png'}, maps: [ KOZELSK_AAS, Sbeneh_AAS  ] , active: false},
+  { name: "OPERATION FORTRESS",         icon: { button: 'icons/Fortress_B.png',   thumbnail:  'icons/Fortress.png',   active:  'icons/Fortress_B_select.png' },  maps: [ MUTTRAH_AAS, HADES_AAS   ] },
+  { name: "OPERATION ABLE ANVIL",       icon: { button: 'icons/Anvil_B.png',      thumbnail:  'icons/Anvil.png',      active:  'icons/Anvil_B_select.png'},      maps: [ SHIJIA_AAS, KASHAN_AAS   ] },
+  { name: "OPERATION ROLLING THUNDER",  icon: { button: 'icons/Lightning_B.png',  thumbnail:  'icons/Lightning.png',  active:  'icons/Lightning_B_select.png'},  maps: [ YAMALIA_AAS, XIANG_AAS   ] , active: true},
+  { name: "OPERATION GUARDIAN",         icon: { button: 'icons/Shield_B.png',     thumbnail:  'icons/Shield.png',     active:  'icons/Shield_B_select.png'},     maps: [ SAAREMA_AAS, DRANG_AAS   ] },
+  { name: "OPERATION VICIOUS FALCON",   icon: { button: 'icons/Falcon_B.png',     thumbnail:  'icons/Falcon.png',     active:  'icons/Falcon_B_select.png'},     maps: [ DOVRE_AAS, BLACKGOLD_AAS ] },
+  { name: "OPERATION BROADSWORD",       icon: { button: 'icons/Sword_B.png',      thumbnail:  'icons/Sword.png',      active:  'icons/Sword_B_select.png'},      maps: [ NUJIMAA_AAS, KHAMY_AAS   ] },
+  { name: "OPERATION SUDDEN STRIKE",    icon: { button: 'icons/Strike_B.png',     thumbnail:  'icons/Strike.png',     active:  'icons/Strike_B_select.png'},     maps: [ WANDA_AAS, DRAGON_AAS    ] }
 ];
 
 
@@ -81,10 +81,20 @@ function init(){
   $('.header-team-logo.team-b').css('background-image', 'url('+PATH+'img/'+TEAMS.b.logo.header+')');
   setPoints(TEAMS.a.points, TEAMS.b.points);
   
-  //Show 1st Operation
+  //Obtain direct link
 	var url  = new Url; // curent document URL will be used
 	var opIndex = parseInt(url.query.operation);
-	if(isNaN(opIndex)) opIndex = 0;
+	
+	//If no direct link, go to the active operation
+	if(isNaN(opIndex)){
+		opIndex = 0;
+		for(op in OPERATIONS){
+			if(OPERATIONS[op].active){
+				opIndex = parseInt(op);
+				break;
+			}
+		}
+	}
   displayOperation(opIndex);
 	opIndex++;//Required! nth-child is based 1 
  
@@ -185,8 +195,18 @@ function buildOpHeader(){
   
   for(index in OPERATIONS){
     var button = '';
-    button += '<div class="op-button" data-operation="' + index + '">'
-    button += '<img src="'+PATH+'img/' + OPERATIONS[index].icon.button+ '" />';
+		var icon;
+		var bClass = "";
+		
+		if( OPERATIONS[index].active ){
+			icon = OPERATIONS[index].icon.active;
+			bClass = "active";
+		} else{
+			icon = OPERATIONS[index].icon.button;
+		} 
+		
+		button += '<div class="op-button '+bClass+'" data-operation="' + index + '"   ">'
+    button += '<img src="'+PATH+'img/' + icon + '"/>';
     button += '</div>';
     container.append(button);
   }
