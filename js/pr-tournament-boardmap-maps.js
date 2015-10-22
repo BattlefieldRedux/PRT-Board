@@ -88,7 +88,7 @@ var SHIJIA_AAS = {
 var KASHAN_AAS = {
   name: "KASHAN DESERT",
   layer: "AAS STD",
-  team : { a: "CA" , b:  "MEC" },
+  team : { a: "US" , b:  "MEC" },
   viewport: { lat: 33.59, lng: 51.28, zoom: 4 },
   tickets: { a: 600, b: 600 },
   background: 'maps/kashan_desert/background.jpg',
