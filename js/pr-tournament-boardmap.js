@@ -324,10 +324,12 @@ function populateStripe(stripe, map){
   
   if( map.played ){
     var winner = tickets.a > tickets.b ? 'a' : 'b';
-    var message = TEAMS[winner].initials + ' Victory';
-    stripe.find('.op-teams-versus').attr('data-alt', message);
+    var message = TEAMS[winner].initials + ' VICTORY';
+    stripe.find('.op-teams-versus').text(message).css("border-color", TEAMS[winner].color );
+		stripe.find('.op-teams-container').addClass("played");
   }else{
-     stripe.find('.op-teams-versus').removeAttr('data-alt');
+     stripe.find('.op-teams-versus').text('vs');
+		 stripe.find('.op-teams-container').removeClass("played")
   }
 
   stripe.find('.op-map-background').css('background-image', 'url('+PATH+'img/'+map.background+')');
@@ -406,19 +408,7 @@ function toggleDetails(container, toggle){
     container.removeClass('extended');
   }else{
     container.addClass('extended');
-  }
-  
-  var versus =  container.find('.op-teams-versus');
-  var alt = versus.attr('data-alt');
-  
-  if (alt != 'undefined'){
-    versus.attr('data-alt', versus.text());
-    versus.text(alt);
-  }
-  
- 
-  
- 
+  } 
 }
 
 /**

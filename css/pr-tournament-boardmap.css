@@ -420,7 +420,33 @@ div#Op-fake-base {
 
 
 
+.played .op-team {
+    display: none;
+}
 
+.extended .played .op-team {
+    display: initial;
+    width: 30%;
+}
+
+.played .op-teams-versus {
+    width: 50%;
+    margin: 0 auto;
+    display: table;
+    float: none;
+    font-size: 46px;
+    padding: 0 15px;
+    border-top: solid 1px;
+    border-bottom: solid 1px;
+    top: 0px
+
+}
+.extended .played .op-teams-versus {
+    width: 40%;
+    display: initial;
+    float: left;
+    padding: 0 ;
+}
 
 /* **********************************************
  *              Operation Buttons/Icons
