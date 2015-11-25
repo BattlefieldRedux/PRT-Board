@@ -455,7 +455,7 @@ div#Op-fake-base {
  
 div#Op-Header-Icons {
     display: table;
-    margin: 18px auto;
+    margin: 14px auto;
     float: left;
 }
 
@@ -464,6 +464,7 @@ div#Op-Header-Icons {
 .op-button {
     float: left;
 		position: relative;
+		padding: 5px 0px;
 }
 
 .op-button img {
@@ -482,23 +483,21 @@ div#Op-Header-Icons {
     opacity: 1;
 }
 
+/* **********************************************
+ *              Operation Buttons: Winner Indicator
+ * ********************************************** */
 
-.op-button.selected:before,.op-button.selected:after {
-    content: "";
-    position: absolute;
-    width: 110%;
-    height: 0;
-    border-top: solid 1px #8F8F8F;
-    left: -5%;
+.op-button.show-bars, .op-button.selected{
+		border-top-width: 1px;
+    border-top-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+		border-top-color: #8F8F8F;
+		border-bottom-color: #8F8F8F;
 }
 
-.op-button.selected:before {
-    top: -5px;
-}
 
-.op-button.selected:after {
-    bottom: -5px;
-}
+
 /* **********************************************
  *              Operation Details: Tickets
  * ********************************************** */

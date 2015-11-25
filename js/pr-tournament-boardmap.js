@@ -196,16 +196,29 @@ function buildOpHeader(){
   for(index in OPERATIONS){
     var button = '';
 		var icon;
-		var bClass = "";
+		var bClass = [];
+		var style = '';
 		
 		if( OPERATIONS[index].active ){
 			icon = OPERATIONS[index].icon.active;
-			bClass = "active";
+			bClass.push("active");
 		} else{
 			icon = OPERATIONS[index].icon.button;
 		} 
 		
-		button += '<div class="op-button '+bClass+'" data-operation="' + index + '"   ">'
+		for(mIndex in OPERATIONS[index].maps){
+				var map = OPERATIONS[index].maps[mIndex];
+				if(map.played){
+					var base1Index = parseInt(mIndex)+1;
+					bClass.push("show-bars");
+					
+					style += mIndex==0 ? "border-top-color:" : "border-bottom-color:";
+					style += map.tickets.a > map.tickets.b ? TEAMS.a.color : TEAMS.b.color;
+					style += ";";
+				}
+		}
+		
+		button += '<div class="op-button '+bClass.join(" ")+'" data-operation="' + index + '"  style="'+style+'">'
     button += '<img src="'+PATH+'img/' + icon + '"/>';
     button += '</div>';
     container.append(button);
