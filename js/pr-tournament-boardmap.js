@@ -23,21 +23,20 @@
  //A: LEFT SIDE
  //B: RIGHT SIDE
 var TEAMS ={
-  b: { initials:"MRF", logo: { header:'icons/team_icons_MRF.png' , details:'icons/team_icons_MRF.png' },   color:"#9d831d", points: '0' },
-  a: { initials:"PDI", logo: { header:'icons/team_icons_PDI.png' , details:'icons/team_icons_PDI.png' },   color:"#0b8f9e", points: '0' }
+  b: { initials:"MRF", logo: { header:'icons/team_icons_MRF.png' , details:'icons/team_icons_MRF.png' },   color:"#9d831d", points: '2' },
+  a: { initials:"PDI", logo: { header:'icons/team_icons_PDI.png' , details:'icons/team_icons_PDI.png' },   color:"#0b8f9e", points: '2' }
 };
  
-
 var OPERATIONS = [
-  { name: "OPERATION NEPTUNE",          icon: { button: 'icons/Neptune_B.png',    thumbnail:  'icons/Neptune.png',    active: 'icons/Neptune_B_select.png' },    maps: [ VADSO_AAS, BEIRUT_AAS    ] , active: false},
-  { name: "OPERATION INDEPENDENCE",     icon: { button: 'icons/RisingFist_B.png', thumbnail:  'icons/RisingFist.png', active:  'icons/RisingFist_B_select.png'}, maps: [ KOZELSK_AAS, Sbeneh_AAS  ] , active: false},
+  { name: "OPERATION NEPTUNE",          icon: { button: 'icons/Neptune_B.png',    thumbnail:  'icons/Neptune.png' },    maps: [ VADSO_AAS, BEIRUT_AAS    ] , active: false},
+  { name: "OPERATION INDEPENDENCE",     icon: { button: 'icons/RisingFist_B.png', thumbnail:  'icons/RisingFist.png'}, maps: [ KOZELSK_AAS, Sbeneh_AAS  ] , active: false},
   { name: "OPERATION FORTRESS",         icon: { button: 'icons/Fortress_B.png',   thumbnail:  'icons/Fortress.png',   active:  'icons/Fortress_B_select.png' },  maps: [ MUTTRAH_AAS, HADES_AAS   ] },
   { name: "OPERATION ABLE ANVIL",       icon: { button: 'icons/Anvil_B.png',      thumbnail:  'icons/Anvil.png',      active:  'icons/Anvil_B_select.png'},      maps: [ SHIJIA_AAS, KASHAN_AAS   ] },
-  { name: "OPERATION ROLLING THUNDER",  icon: { button: 'icons/Lightning_B.png',  thumbnail:  'icons/Lightning.png',  active:  'icons/Lightning_B_select.png'},  maps: [ YAMALIA_AAS, XIANG_AAS   ] , active: true},
+  { name: "OPERATION ROLLING THUNDER",  icon: { button: 'icons/Lightning_B.png',  thumbnail:  'icons/Lightning.png',  active:  'icons/Lightning_B_select.png'},  maps: [ YAMALIA_AAS, XIANG_AAS   ] },
   { name: "OPERATION GUARDIAN",         icon: { button: 'icons/Shield_B.png',     thumbnail:  'icons/Shield.png',     active:  'icons/Shield_B_select.png'},     maps: [ SAAREMA_AAS, DRANG_AAS   ] },
   { name: "OPERATION VICIOUS FALCON",   icon: { button: 'icons/Falcon_B.png',     thumbnail:  'icons/Falcon.png',     active:  'icons/Falcon_B_select.png'},     maps: [ DOVRE_AAS, BLACKGOLD_AAS ] },
   { name: "OPERATION BROADSWORD",       icon: { button: 'icons/Sword_B.png',      thumbnail:  'icons/Sword.png',      active:  'icons/Sword_B_select.png'},      maps: [ NUJIMAA_AAS, KHAMY_AAS   ] },
-  { name: "OPERATION SUDDEN STRIKE",    icon: { button: 'icons/Strike_B.png',     thumbnail:  'icons/Strike.png',     active:  'icons/Strike_B_select.png'},     maps: [ WANDA_AAS, DRAGON_AAS    ] }
+  { name: "OPERATION SUDDEN STRIKE",    icon: { button: 'icons/Strike_B.png',     thumbnail:  'icons/Strike.png',     active:  'icons/Strike_B_select.png'},     maps: [ WANDA_AAS, DRAGON_AAS    ] , active: true}
 ];
 
 
