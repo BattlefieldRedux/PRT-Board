@@ -39,6 +39,7 @@ var OPERATIONS = [
   { name: "OPERATION SUDDEN STRIKE",    icon: { button: 'icons/Strike_B.png',     thumbnail:  'icons/Strike.png',     active:  'icons/Strike_B_select.png'},     maps: [ WANDA_AAS, DRAGON_AAS    ] , active: true}
 ];
 
+var NEXT_BATTLE_MESSAGE = "19:00 30/11";
 
 
 
@@ -209,7 +210,7 @@ function buildOpHeader(){
 		
 		for(mIndex in OPERATIONS[index].maps){
 				var map = OPERATIONS[index].maps[mIndex];
-				if(map.played){
+				if(map.status == STATUS.PLAYED){
 					var base1Index = parseInt(mIndex)+1;
 					bClass.push("show-bars");
 					
@@ -308,45 +309,47 @@ function displayOperation(opIndex, saveHistory){
   * @param {Object|Jquery} stripe - Stripe that is the container to all the information
   * @param {Object|Map} operation - Map information object
   */
-function populateStripe(stripe, map){
-  var tickets = map.tickets;
-  
+function populateStripe(stripe, map) {
+    //Reset
+    stripe.find('.op-teams-container').removeClass("played")
+    stripe.find('.op-teams-versus').text('vs');
+    stripe.find('.op-details').removeAttr('data-alt-description');
 
-  stripe.find('.op-map-name').html(map.name);
-  stripe.find('.op-map-layer').html(map.layer);
-  
-  for (t = 0; t < 2; t++) { 
-   var team = t==0 ? 'a' : 'b';
-   
-   
-   
-    stripe.find('.team-'+ team + ' .op-team-faction').text(map.team[team]);
-    stripe.find('.team-'+ team + ' .op-team-tickets').text(tickets[team] + ' TICKETS');
-    
-    var flag = 'flags/'+map.team[team]+'.png';
+    //New Data
+    var tickets = map.tickets;
+		
+		//Title
+    stripe.find('.op-map-name').html(map.name);
+    stripe.find('.op-map-layer').html(map.layer);
 
-    if(typeof map.flags != 'undefined' && typeof map.flags[team] != 'undefined')
-      flag = map.flags[team];
-    
-    stripe.find('.team-'+ team + ' .op-team-faction-flag').css('background-image', 'url('+PATH+'img/'+flag+')' );
-  }
-  
-  
-  //stripe.find('.team-a .op-team-logo').html(TEAM[0].logo);
- 
-  
-  
-  if( map.played ){
-    var winner = tickets.a > tickets.b ? 'a' : 'b';
-    var message = TEAMS[winner].initials + ' VICTORY';
-    stripe.find('.op-teams-versus').text(message).css("border-color", TEAMS[winner].color );
-		stripe.find('.op-teams-container').addClass("played");
-  }else{
-     stripe.find('.op-teams-versus').text('vs');
-		 stripe.find('.op-teams-container').removeClass("played")
-  }
+    for (t = 0; t < 2; t++) {
+        var team = t == 0 ? 'a' : 'b';
 
-  stripe.find('.op-map-background').css('background-image', 'url('+PATH+'img/'+map.background+')');
+        stripe.find('.team-' + team + ' .op-team-faction').text(map.team[team]);
+        stripe.find('.team-' + team + ' .op-team-tickets').text(tickets[team] + ' TICKETS');
+
+        var flag = 'flags/' + map.team[team] + '.png';
+
+        if (typeof map.flags != 'undefined' && typeof map.flags[team] != 'undefined')
+            flag = map.flags[team];
+
+        stripe.find('.team-' + team + ' .op-team-faction-flag').css('background-image', 'url(' + PATH + 'img/' + flag + ')');
+    }
+
+    if (map.status == STATUS.PLAYED) {
+        var winner = tickets.a > tickets.b ? 'a' : 'b';
+        var message = TEAMS[winner].initials + ' VICTORY';
+        stripe.find('.op-teams-versus').text(message).css("border-color", TEAMS[winner].color);
+        stripe.find('.op-teams-container').addClass("played");
+
+    } else if (map.status == STATUS.NEXT) {
+        stripe.find('.op-teams-versus').text(NEXT_BATTLE_MESSAGE);
+        var details = stripe.find('.op-details');
+        toggleDetails(details, TOGGLE.open);
+        details.attr('data-alt-description', 'vs');
+    }
+
+    stripe.find('.op-map-background').css('background-image', 'url(' + PATH + 'img/' + map.background + ')');
 }
 
 
@@ -413,11 +416,17 @@ function toggleDetails(container, toggle){
   if( (toggle == TOGGLE.open) && container.hasClass('extended'))
     return;
   
-   
-  
   if( (toggle == TOGGLE.close) && !container.hasClass('extended'))
     return;
 
+	var altDescription = container.attr("data-alt-description");
+	var dscripContainer = container.find(".op-teams-versus");
+	
+	if(typeof altDescription !== 'undefined' ){
+		container.attr("data-alt-description", dscripContainer.text());
+		dscripContainer.text(altDescription);
+	}
+	
   if( (toggle == TOGGLE.close) || ((toggle == TOGGLE.toggle) && container.hasClass('extended') ) ){
     container.removeClass('extended');
   }else{

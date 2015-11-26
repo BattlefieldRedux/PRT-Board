@@ -13,7 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+ var STATUS = {
+	 NOT_PLAYED : 0,
+	 PLAYED : 1,
+	 NEXT : 2,
+ }
  
  var VADSO_AAS = {
   name: "VADSO CITY",
@@ -22,7 +26,7 @@
   viewport: { lat: 70.04, lng: 29.43, zoom: 4 },
   tickets: { a: 650, b: 650 },
   background: 'maps/vadso_city/background.jpg',
-  played: false
+  status: STATUS.NOT_PLAYED
 }
  
 var BEIRUT_AAS = {
@@ -32,7 +36,7 @@ var BEIRUT_AAS = {
   viewport: { lat: 33.53, lng: 35.30, zoom: 4 },
   tickets: { a: 550, b: 550 },
   background: 'maps/beirut/background.jpg',
-  played: false
+  status: STATUS.NOT_PLAYED
 }
  
 var KOZELSK_AAS = {
@@ -42,7 +46,7 @@ var KOZELSK_AAS = {
   viewport: { lat: 54.02, lng: 35.48, zoom: 4 },
   tickets: { a: 600, b: 600 },
   background: 'maps/kozelsk/background.jpg',
-  played: false
+  status: STATUS.NOT_PLAYED
 }
 
 var GROZNY_AAS = {
@@ -52,7 +56,7 @@ var GROZNY_AAS = {
   viewport: { lat: 43.32, lng: 45.69, zoom: 4 },
   tickets: { a: 400, b: 400 },
   background: 'maps/grozny/background.jpg',
-  played: false
+  status: STATUS.NOT_PLAYED
 }
 
 var MUTTRAH_AAS = {
@@ -62,7 +66,7 @@ var MUTTRAH_AAS = {
   viewport: { lat: 23.37, lng: 58.34, zoom: 4 },
   tickets: { a: 500, b: 500 },
   background: 'maps/muttrah_city_2/background.jpg',
-  played: false
+  status: STATUS.NOT_PLAYED
 }
 
 var HADES_AAS = {
@@ -72,7 +76,7 @@ var HADES_AAS = {
   viewport: { lat: 44.14, lng: 39.36, zoom: 4 },
   tickets: { a: 600, b: 600 },
   background: 'maps/hades_peak/background.jpg',
-  played: false
+  status: STATUS.NOT_PLAYED
 }
 
 var SHIJIA_AAS = {
@@ -82,7 +86,7 @@ var SHIJIA_AAS = {
   viewport: { lat: 33.03, lng: 111.13, zoom: 4 },
   tickets: { a: 650, b: 650 },
   background: 'maps/shijiavalley/background.jpg',
-  played: false
+  status: STATUS.NOT_PLAYED
 }
 
 var KASHAN_AAS = {
@@ -92,7 +96,7 @@ var KASHAN_AAS = {
   viewport: { lat: 33.59, lng: 51.28, zoom: 4 },
   tickets: { a: 600, b: 600 },
   background: 'maps/kashan_desert/background.jpg',
-  played: false
+  status: STATUS.NOT_PLAYED
 }
 
 var YAMALIA_AAS = {
@@ -102,7 +106,7 @@ var YAMALIA_AAS = {
   viewport: { lat: 66.59, lng: 74.51, zoom: 4 },
   tickets: { a: 126, b: 0 },
   background: 'maps/yamalia/background.jpg',
-  played: true
+  status: STATUS.PLAYED
 }
 
 var XIANG_AAS = {
@@ -112,7 +116,7 @@ var XIANG_AAS = {
   viewport: { lat: 29.26, lng: 121.43, zoom: 4 },
   tickets: { a: 0, b: 129 },
   background: 'maps/xiangshan/background.jpg',
-  played: true
+  status: STATUS.PLAYED
 }
 
 
@@ -123,7 +127,7 @@ var SAAREMA_AAS = {
   viewport: { lat: 58.25, lng: 22.30, zoom: 4 },
   tickets: { a: 400, b: 400 },
   background: 'maps/saaremaa/background.jpg',
-  played: false
+  status: STATUS.NOT_PLAYED
 }
 
 var DRANG_AAS = {
@@ -133,7 +137,7 @@ var DRANG_AAS = {
   viewport: { lat: 13.33, lng: 107.42, zoom: 4 },
   tickets: { a: 550, b: 550 },
   background: 'maps/battle_of_ia_drang/background.jpg',
-  played: false
+  status: STATUS.NOT_PLAYED
 }
 
 
@@ -144,7 +148,7 @@ var DOVRE_AAS = {
   viewport: { lat: 62.2, lng: 9.28, zoom: 4 },
   tickets: { a: 550, b: 550 },
   background: 'maps/dovre/background.jpg',
-  played: false
+  status: STATUS.NOT_PLAYED
 }
 
 
@@ -155,7 +159,7 @@ var BLACKGOLD_AAS = {
   viewport: { lat: 43.29, lng: 87.43, zoom: 4 },
   tickets: { a: 650, b: 650 },
   background: 'maps/black_gold/background.jpg',
-  played: false
+  status: STATUS.NOT_PLAYED
 }
 
 
@@ -166,7 +170,7 @@ var NUJIMAA_AAS = {
   viewport: { lat: 60.57, lng: 28.32, zoom: 4 },
   tickets: { a: 550, b: 550 },
   background: 'maps/nuijamaa/background.jpg',
-  played: false
+  status: STATUS.NOT_PLAYED
 }
 
 
@@ -178,7 +182,7 @@ var KHAMY_AAS = {
   viewport: { lat: 31.14, lng: 46.19, zoom: 4 },
   tickets: { a: 700, b: 750 },
   background: 'maps/khamisiyah/background.jpg',
-  played: false
+  status: STATUS.NOT_PLAYED
 }
 
 var WANDA_AAS = {
@@ -188,7 +192,7 @@ var WANDA_AAS = {
   viewport: { lat: 48, lng: 129, zoom: 4 },
   tickets: { a: 425, b: 425 },
   background: 'maps/wanda_shan/background.jpg',
-  played: false
+  status: STATUS.NEXT
 }
 
 var DRAGON_AAS = {
@@ -198,6 +202,6 @@ var DRAGON_AAS = {
   viewport: { lat: 43.18, lng: 20.99, zoom: 4 },
 tickets: { a: 500, b: 500 },
   background: 'maps/dragon_fly/background.jpg',
-  played: false
+  status: STATUS.NOT_PLAYED
 }
 	
