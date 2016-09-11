@@ -109,9 +109,6 @@ function init(){
   $('.op-selector.right').click(function(){zappingOperation(1);});
   $('.op-selector.left').click(function(){zappingOperation(-1);});
   
-  //Hack: by removing the padding w/ position absolute we need to "fill" the outter DIV programmatically 
-  $('#Board-Outter').height($('#Board').height());
-	
 	window.onpopstate = function(event) {
 		var url  = new Url; // curent document URL will be used
 		var opIndex = parseInt(url.query.operation);
@@ -302,6 +299,9 @@ function displayOperation(opIndex, saveHistory){
       createMarkerAndFocus( MAPS[index], operation.maps[index] );
     }
   });
+
+  //Hack: by removing the padding w/ position absolute we need to "fill" the outter DIV programmatically 
+  $('#Board-Outter').height($('#Board').height());
 }
 
 /**
