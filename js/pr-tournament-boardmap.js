@@ -66,7 +66,7 @@ function init(){
   //Create the maximum required stripes
   var stripes = 0; 
   for(index in OPERATIONS){
-    stripes = Math.max(0, OPERATIONS[index].maps.length);
+    stripes = Math.max(stripes, OPERATIONS[index].maps.length);
   }
   buildOpStripes(stripes, $('#Op-Strip-Container'));
   
