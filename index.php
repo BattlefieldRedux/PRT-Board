@@ -35,21 +35,6 @@
   
  
  ?>
-<!--
-    
-    <link rel="stylesheet" href="css/jquery-jvectormap-2.0.4.css" type="text/css" media="screen"/>
-    <link rel="stylesheet" href="css/pr-tournament-boardmap.css" type="text/css" media="screen"/>
-   
-   
-    <script src="js/jquery-2.1.4.min.js"></script>
-
-    <script src="js/jquery-jvectormap-2.0.4.min.js"></script>
-    <script src="js/jquery-jvectormap-world-mill.js"></script>
-    
-     <script src="js/pr-tournament-boardmap-maps.js"></script>
-    <script src="js/pr-tournament-boardmap.js"></script>
-   
-    -->
     <!-- BOARD -->
     <div id="Board-Outter">
       <div id="Board">
