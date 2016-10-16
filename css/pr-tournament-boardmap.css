@@ -463,8 +463,10 @@ div#Op-Header-Icons {
 
 .op-button {
     float: left;
-		position: relative;
-		padding: 5px 0px;
+    position: relative;
+    padding: 5px 0px;
+    border-bottom: solid 1px transparent;
+    border-top: solid 1px transparent;
 }
 
 .op-button img {
