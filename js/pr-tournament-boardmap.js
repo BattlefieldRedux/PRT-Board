@@ -62,7 +62,10 @@ $(window).ready(init);
  */
 function init(){
   PATH = $('#AbsPath').attr('data-path');
-  AbsPath
+
+  // HACK: Remove padding from vbulletin wrapper
+  $("#Board-Outter").parent().css("padding", 0);
+  
   //Create the maximum required stripes
   var stripes = 0; 
   for(index in OPERATIONS){
@@ -299,9 +302,6 @@ function displayOperation(opIndex, saveHistory){
       createMarkerAndFocus( MAPS[index], operation.maps[index] );
     }
   });
-
-  //Hack: by removing the padding w/ position absolute we need to "fill" the outter DIV programmatically 
-  $('#Board-Outter').height($('#Board').height());
 }
 
 /**

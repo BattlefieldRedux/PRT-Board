@@ -38,13 +38,6 @@ div#Board-Outter {
   width: 100%;
 }
 
-
-div#Board {
-  position: absolute;
-  top: -6px;
-  left: -6px;
-}
-
 /* **********************************************
  *                    TEAM GENERICS
  * ********************************************** */
