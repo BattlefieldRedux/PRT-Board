@@ -35,7 +35,8 @@ var VADSO_AAS = {
   viewport: { lat: 70.04, lng: 29.43, zoom: 4 },
   tickets: { a: 110, b: 110 },
   background: 'maps/vadso_city/background.jpg',
-  status: STATUS.NEXT
+  status: STATUS.PLAYED,
+  playedOrder: 2
 }
 ```
 Located in `pr-tournament-boardmap-maps.js`, these are only meant to keep things simple and not overcrowed the configuration that matters **OPERATIONS**.
@@ -48,7 +49,8 @@ The first line just creates a variable, `var`, to use later with that name and a
 * **viewport** - Positioning and zoom level of the local of the map
 * **tickets** - Tickets for the teams
 * **background** - Path to the image that will apear in the details when expanded
-* **played** - Status of this map
+* **status** - Status of this map
+* **playedOrder** - (REQUIRED WHEN status is set to PLAYED) Defines the order in which the map was played in the operation
 
 #### Status
 ```Javascript

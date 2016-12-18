@@ -18,7 +18,7 @@
 	 PLAYED : 1,
 	 NEXT : 2,
  }
- 
+
  var VADSO_AAS = {
   name: "VADSO CITY",
   layer: "AAS INF",
@@ -116,7 +116,8 @@ var XIANG_AAS = {
   viewport: { lat: 29.26, lng: 121.43, zoom: 4 },
   tickets: { a: 107, b: 0 },
   background: 'maps/xiangshan/background.jpg',
-  status: STATUS.PLAYED
+  status: STATUS.PLAYED,
+  playedOrder: 1
 }
 
 
@@ -202,7 +203,8 @@ var WANDA_AAS = {
   viewport: { lat: 48, lng: 129, zoom: 4 },
   tickets: { a: 0, b: 35 },
   background: 'maps/wanda_shan/background.jpg',
-  status: STATUS.PLAYED
+  status: STATUS.PLAYED,
+  playedOrder: 2
 }
 
 var DRAGON_AAS = {
@@ -210,7 +212,7 @@ var DRAGON_AAS = {
   layer: "AAS STD",
   team : { a: "MIL" , b:  "GB" }, 
   viewport: { lat: 43.18, lng: 20.99, zoom: 4 },
-tickets: { a: 0, b: 0 },
+  tickets: { a: 0, b: 0 },
   background: 'maps/dragon_fly/background.jpg',
   status: STATUS.NOT_PLAYED
 }

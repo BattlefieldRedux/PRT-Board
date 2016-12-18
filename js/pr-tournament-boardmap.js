@@ -206,13 +206,13 @@ function buildOpHeader(){
 			icon = OPERATIONS[index].icon.button;
 		} 
 		
-		for(mIndex in OPERATIONS[index].maps){
-				var map = OPERATIONS[index].maps[mIndex];
+		for(var mapIndex in OPERATIONS[index].maps){
+				var map = OPERATIONS[index].maps[mapIndex];
 				if(map.status == STATUS.PLAYED){
-					var base1Index = parseInt(mIndex)+1;
+					var base1Index = parseInt(mapIndex)+1;
 					bClass.push("show-bars");
 					
-					style += mIndex==0 ? "border-top-color:" : "border-bottom-color:";
+					style += map.playedOrder == 1 ? "border-top-color:" : "border-bottom-color:";
 					style += map.tickets.a > map.tickets.b ? TEAMS.a.color : TEAMS.b.color;
 					style += ";";
 				}
