@@ -21,10 +21,10 @@
  
  var VADSO_AAS = {
   name: "VADSO CITY",
-  layer: "AAS ALT",
+  layer: "AAS INF",
   team: { a: "RU" , b:  "GB" },
   viewport: { lat: 70.04, lng: 29.43, zoom: 4 },
-  tickets: { a: 650, b: 650 },
+  tickets: { a: 0, b: 0 },
   background: 'maps/vadso_city/background.jpg',
   status: STATUS.NOT_PLAYED
 }
@@ -34,37 +34,37 @@ var BEIRUT_AAS = {
   layer: "AAS INF",
   team : { a: "IDF" , b:  "RU" },
   viewport: { lat: 33.53, lng: 35.30, zoom: 4 },
-  tickets: { a: 550, b: 550 },
+  tickets: { a: 0, b: 0 },
   background: 'maps/beirut/background.jpg',
   status: STATUS.NOT_PLAYED
 }
  
 var KOZELSK_AAS = {
   name: "KOZELSK",
-  layer: "AAS INF",
+  layer: "AAS STD",
   team :  { a: "RU" , b:  "MIL" },
   viewport: { lat: 54.02, lng: 35.48, zoom: 4 },
-  tickets: { a: 600, b: 600 },
+  tickets: { a: 0, b: 0 },
   background: 'maps/kozelsk/background.jpg',
   status: STATUS.NOT_PLAYED
 }
 
 var GROZNY_AAS = {
   name: "GROZNY",
-  layer: "AAS INF",
-  team :  { a: "MIL" , b:  "RU" },
+  layer: "AAS STD",
+  team :  { a: "RU" , b:  "MIL" },
   viewport: { lat: 43.32, lng: 45.69, zoom: 4 },
-  tickets: { a: 400, b: 400 },
+  tickets: { a: 0, b: 0 },
   background: 'maps/grozny/background.jpg',
   status: STATUS.NOT_PLAYED
 }
 
 var MUTTRAH_AAS = {
   name: "MUTTRAH CITY",
-  layer: "AAS INF",
+  layer: "AAS STD",
   team :  { a: "USMC" , b:  "MEC" },
   viewport: { lat: 23.37, lng: 58.34, zoom: 4 },
-  tickets: { a: 500, b: 500 },
+  tickets: { a: 0, b: 0 },
   background: 'maps/muttrah_city_2/background.jpg',
   status: STATUS.NOT_PLAYED
 }
@@ -74,17 +74,17 @@ var HADES_AAS = {
   layer: "AAS STD",
   team :  { a: "RU" , b:  "GB" },
   viewport: { lat: 44.14, lng: 39.36, zoom: 4 },
-  tickets: { a: 600, b: 600 },
+  tickets: { a: 0, b: 0 },
   background: 'maps/hades_peak/background.jpg',
   status: STATUS.NOT_PLAYED
 }
 
 var SHIJIA_AAS = {
   name: "SHIJIA VALLEY",
-  layer: "AAS STD",
+  layer: "AAS ALT",
   team :  { a: "PLA" , b:  "GB" },
   viewport: { lat: 33.03, lng: 111.13, zoom: 4 },
-  tickets: { a: 650, b: 650 },
+  tickets: { a: 0, b: 0 },
   background: 'maps/shijiavalley/background.jpg',
   status: STATUS.NOT_PLAYED
 }
@@ -101,20 +101,20 @@ var KASHAN_AAS = {
 
 var YAMALIA_AAS = {
   name: "YAMALIA",
-  layer: "AAS INF",
+  layer: "AAS ALT",
   team : { a: "CA" , b:  "RU" },
   viewport: { lat: 66.59, lng: 74.51, zoom: 4 },
-  tickets: { a: 126, b: 0 },
+  tickets: { a: 0, b: 0 },
   background: 'maps/yamalia/background.jpg',
-  status: STATUS.PLAYED
+  status: STATUS.NOT_PLAYED
 }
 
 var XIANG_AAS = {
   name: "XIANGSHAN",
-  layer: "AAS ALT",
+  layer: "AAS STD",
   team : { a: "PLA" , b:  "FR" },
   viewport: { lat: 29.26, lng: 121.43, zoom: 4 },
-  tickets: { a: 0, b: 129 },
+  tickets: { a: 107, b: 0 },
   background: 'maps/xiangshan/background.jpg',
   status: STATUS.PLAYED
 }
@@ -122,10 +122,10 @@ var XIANG_AAS = {
 
 var SAAREMA_AAS = {
   name: "SAAREMAA",
-  layer: "AAS INF",
+  layer: "AAS ALT/INF",
   team : { a: "USMC" , b:  "RU" },
   viewport: { lat: 58.25, lng: 22.30, zoom: 4 },
-  tickets: { a: 400, b: 400 },
+  tickets: { a: 0, b: 0 },
   background: 'maps/saaremaa/background.jpg',
   status: STATUS.NOT_PLAYED
 }
@@ -135,7 +135,7 @@ var DRANG_AAS = {
   layer: "AAS INF",
   team : { a: "US" , b:  "NVA" },
   viewport: { lat: 13.33, lng: 107.42, zoom: 4 },
-  tickets: { a: 550, b: 550 },
+  tickets: { a: 0, b: 0 },
   background: 'maps/battle_of_ia_drang/background.jpg',
   status: STATUS.NOT_PLAYED
 }
@@ -143,21 +143,31 @@ var DRANG_AAS = {
 
 var DOVRE_AAS = {
   name: "DOVRE",
-  layer: "AAS INF",
+  layer: "AAS STD",
   team : { a: "RU" , b:  "NL" },
   viewport: { lat: 62.2, lng: 9.28, zoom: 4 },
-  tickets: { a: 550, b: 550 },
+  tickets: { a: 0, b: 0 },
   background: 'maps/dovre/background.jpg',
+  status: STATUS.NOT_PLAYED
+}
+
+var DOVRE_WINTER_AAS = {
+  name: "DOVRE WINTER",
+  layer: "AAS ALT",
+  team : { a: "RU" , b:  "GER" },
+  viewport: { lat: 62.2, lng: 9.28, zoom: 4 },
+  tickets: { a: 0, b: 0 },
+  background: 'maps/dovre_winter/background.jpg',
   status: STATUS.NOT_PLAYED
 }
 
 
 var BLACKGOLD_AAS = {
   name: "BLACK GOLD",
-  layer: "AAS STD",
+  layer: "AAS ALT",
   team : { a: "PLA" , b:  "RU" },
   viewport: { lat: 43.29, lng: 87.43, zoom: 4 },
-  tickets: { a: 650, b: 650 },
+  tickets: { a: 0, b: 0 },
   background: 'maps/black_gold/background.jpg',
   status: STATUS.NOT_PLAYED
 }
@@ -168,7 +178,7 @@ var NUJIMAA_AAS = {
   layer: "AAS STD",
   team : { a: "RU" , b:  "FR" },
   viewport: { lat: 60.57, lng: 28.32, zoom: 4 },
-  tickets: { a: 550, b: 550 },
+  tickets: { a: 0, b: 0 },
   background: 'maps/nuijamaa/background.jpg',
   status: STATUS.NOT_PLAYED
 }
@@ -180,7 +190,7 @@ var KHAMY_AAS = {
   layer: "AAS ALT",
   team : { a: "US" , b:  "MEC" },
   viewport: { lat: 31.14, lng: 46.19, zoom: 4 },
-  tickets: { a: 700, b: 750 },
+  tickets: { a: 0, b: 0 },
   background: 'maps/khamisiyah/background.jpg',
   status: STATUS.NOT_PLAYED
 }
@@ -190,18 +200,78 @@ var WANDA_AAS = {
   layer: "AAS INF",
   team : { a: "PLA" , b:  "GER" },
   viewport: { lat: 48, lng: 129, zoom: 4 },
-  tickets: { a: 425, b: 425 },
+  tickets: { a: 0, b: 35 },
   background: 'maps/wanda_shan/background.jpg',
-  status: STATUS.NEXT
+  status: STATUS.PLAYED
 }
 
 var DRAGON_AAS = {
   name: "DRAGON FLY",
-  layer: "AAS INF",
+  layer: "AAS STD",
   team : { a: "MIL" , b:  "GB" }, 
   viewport: { lat: 43.18, lng: 20.99, zoom: 4 },
-tickets: { a: 500, b: 500 },
+tickets: { a: 0, b: 0 },
   background: 'maps/dragon_fly/background.jpg',
+  status: STATUS.NOT_PLAYED
+}
+
+var IRON_AAS = {
+  name: "IRON RIDGE",
+  layer: "AAS STD",
+  team : { a: "RU" , b:  "MIL" }, 
+  viewport: { lat: 51.24, lng: 30.3, zoom: 4 },
+tickets: { a: 0, b: 0 },
+  background: 'maps/iron_ridge/background.jpg',
+  status: STATUS.NOT_PLAYED
+}
+
+var FOOLS_AAS = {
+  name: "FOOLS ROAD",
+  layer: "AAS INF",
+  team : { a: "MIL" , b:  "GB" }, 
+  viewport: { lat: 43.02, lng: 46.52, zoom: 4 },
+tickets: { a: 0, b: 0 },
+  background: 'maps/fools_road/background.jpg',
+  status: STATUS.NOT_PLAYED
+}
+
+var BIJAR_AAS = {
+  name: "BIJAR CANYONS",
+  layer: "AAS STD",
+  team : { a: "IDF" , b:  "MEC" }, 
+  viewport: { lat: 33.02, lng: 35.73, zoom: 4 },
+tickets: { a: 0, b: 0 },
+  background: 'maps/bijar_canyons/background.jpg',
+  status: STATUS.NOT_PLAYED
+}
+
+var ULYANOVSK_AAS = {
+  name: "ULYANOVSK",
+  layer: "AAS STD",
+  team : { a: "RU" , b:  "GER" }, 
+  viewport: { lat: 54.30, lng: 48.35, zoom: 4 },
+tickets: { a: 0, b: 0 },
+  background: 'maps/ulyanovsk/background.jpg',
+  status: STATUS.NOT_PLAYED
+}
+
+var PAVLOVSK_AAS = {
+  name: "PAVLOVSK",
+  layer: "AAS INF",
+  team : { a: "US" , b:  "RU" }, 
+  viewport: { lat: 42.87, lng: 132.56, zoom: 4 },
+tickets: { a: 0, b: 0 },
+  background: 'maps/pavlovsk_bay/background.jpg',
+  status: STATUS.NOT_PLAYED
+}
+
+var SILENT_AAS = {
+  name: "SILENT EAGLE",
+  layer: "AAS ALT",
+  team : { a: "RU" , b:  "GER" }, 
+  viewport: { lat: 67.43, lng: 34.25, zoom: 4 },
+tickets: { a: 0, b: 0 },
+  background: 'maps/silent_eagle/background.jpg',
   status: STATUS.NOT_PLAYED
 }
 	
